@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: hcw-redis-springboot-start
+  redis:
+    cluster:
+      nodes:
+        - node1:7000
+        - node2:7001
+        - node3:7001
+      max-redirects: 3
+    lettuce:
+      pool:
+        max-idle: 16
+        max-active: 32
+        min-idle: 8
+
+server:
+  port: 9090
