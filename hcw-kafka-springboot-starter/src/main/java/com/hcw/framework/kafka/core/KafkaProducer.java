@@ -26,7 +26,7 @@ public class KafkaProducer{
 
             @Override
             public void onSuccess(SendResult<String, String> stringSendResult) {
-                logger.info(String.valueOf(stringSendResult));
+                logger.info("向kafka发送成功一条消息",String.valueOf(stringSendResult));
             }
         });
 
