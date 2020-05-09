@@ -14,5 +14,6 @@
 
 	<modules>  
 		<module>hcw-redis-springboot-start</module>
+    	<module>hcw-kafka-springboot-starter</module>
   </modules>
 </project>
