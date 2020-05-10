@@ -1,6 +1,5 @@
 package com.hcw.framework.kafka;
 
-import com.hcw.framework.kafka.core.KafaConsumer;
 import com.hcw.framework.kafka.core.KafkaProducer;
 
 import org.junit.Test;
@@ -16,8 +15,6 @@ public class KafkaTest {
 
     @Autowired
     private KafkaProducer kafkaProducer;
-    @Autowired
-    private KafaConsumer kafaConsumer;
 
     @Value("${topicName.topic1}")
     private String topic;
