@@ -7,13 +7,15 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<maven.compiler.source>13</maven.compiler.source>
-    	<maven.compiler.target>13</maven.compiler.target>
+		<maven.compiler.source>14</maven.compiler.source>
+    	<maven.compiler.target>14</maven.compiler.target>
 	</properties>
 
 
 	<modules>  
 		<module>hcw-redis-springboot-starter</module>
     	<module>hcw-kafka-springboot-starter</module>
+    	<module>hcw-learning</module>
   </modules>
+
 </project>
