@@ -1,6 +1,6 @@
 spring:
   application:
-    name: hcw-redis-springboot-start
+    name: hcw-redis-springboot-starter
   redis:
     cluster:
       nodes:

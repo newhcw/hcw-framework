@@ -13,7 +13,7 @@
 
 
 	<modules>  
-		<module>hcw-redis-springboot-start</module>
+		<module>hcw-redis-springboot-starter</module>
     	<module>hcw-kafka-springboot-starter</module>
   </modules>
 </project>

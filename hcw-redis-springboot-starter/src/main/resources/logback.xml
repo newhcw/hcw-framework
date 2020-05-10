@@ -10,7 +10,7 @@
 
 	<appender name="FILEAPPEND" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>./logs/hcw-redis-springboot-start.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>./logs/hcw-redis-springboot-starter.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <append>true</append>
