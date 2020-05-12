@@ -7,9 +7,9 @@ public class HelpfulNullPointerException {
 
     public static void main(String[] args) {
         //after jdk14
-        String s = null;
-        String b = "";
-        System.out.println(s.toString() + b.toString());
+        // String s = null;
+        // String b = "";
+        // System.out.println(s.toString() + b.toString());
     }
     
 
