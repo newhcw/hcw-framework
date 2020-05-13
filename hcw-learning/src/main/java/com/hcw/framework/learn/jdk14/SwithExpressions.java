@@ -1,5 +1,8 @@
 package com.hcw.framework.learn.jdk14;
 
+/**
+ * switch（最终版）
+ **/
 public class SwithExpressions {
 
     int a =1;

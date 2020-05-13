@@ -1,0 +1,20 @@
+1、switch优化更新（预览版）
+String result = switch (k) {
+      case  1 -> "one";
+      case  2 -> "two";
+      default -> "many";
+   };
+
+2、文本块升级
+String html = """
+              <html>
+                  <body>
+                      <p>Hello, world</p>
+                  </body>
+              </html>
+              """;
+String query = """    
+                SELECT `EMP_ID`, `LAST_NAME` FROM `EMPLOYEE_TB`
+                WHERE `CITY` = 'INDIANAPOLIS'
+                ORDER BY `EMP_ID`, `LAST_NAME`;
+               """;              
