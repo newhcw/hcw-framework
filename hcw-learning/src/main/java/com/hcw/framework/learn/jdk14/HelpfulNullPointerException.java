@@ -7,9 +7,10 @@ public class HelpfulNullPointerException {
 
     public static void main(String[] args) {
         //after jdk14
-        // String s = null;
-        // String b = "";
-        // System.out.println(s.toString() + b.toString());
+        record Cat(String id,String name){};
+        Cat cat = new Cat("1",null);
+        System.out.println(cat.id+cat.name.toString());
+
     }
     
 
