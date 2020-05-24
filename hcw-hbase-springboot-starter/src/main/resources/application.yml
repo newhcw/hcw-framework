@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: hcw-hbase-springboot-starter
+  data:
+    hbase:
+      quorum: node1:2181
+      rootDir: /opt
+      nodeParent: /hbase
+
+server:
+  port: 9091
+
