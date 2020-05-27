@@ -16,7 +16,15 @@
   <properties>
 		<maven.compiler.source>14</maven.compiler.source>
     	<maven.compiler.target>14</maven.compiler.target>
-	</properties>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+        <groupId>com.bladejava</groupId>
+        <artifactId>blade-mvc</artifactId>
+        <version>2.0.15.RELEASE</version>
+    </dependency>
+  </dependencies>
 
    <build>
     <pluginManagement>
