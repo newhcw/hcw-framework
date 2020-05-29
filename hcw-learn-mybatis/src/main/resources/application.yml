@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: hcw-learn-mybatis
+  datasource:
+    url: jdbc:mysql://47.100.240.207:3306/spring?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 1234678
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 9091
+
