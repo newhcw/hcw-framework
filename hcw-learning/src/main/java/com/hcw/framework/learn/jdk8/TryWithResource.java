@@ -18,11 +18,7 @@ public class TryWithResource {
 
         @Override
         public void close()  {
-            try{
-
-            }finally{
-
-            }
+            
 
         }
 
