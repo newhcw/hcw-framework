@@ -4,11 +4,20 @@ import java.util.List;
 
 import com.hcw.learn.mybatis.entity.Course;
 
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.CacheNamespace;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 
+@CacheNamespace
 public interface CourseMapper {
     
+
+        
     @Results({
             @Result(property = "courseId", column = "course_id"),
             @Result(property = "courseName", column = "course_name"),

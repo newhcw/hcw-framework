@@ -1,9 +1,11 @@
 package com.hcw.learn.mybatis.entity;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class Course {
+public class Course implements Serializable{
     private Long courseId;
     private String courseName;
     private Long userId;
