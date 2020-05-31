@@ -92,7 +92,7 @@ public class ExecutorTest {
       }
 
 
-    //基础执行器，会有一级缓层  
+    //基础执行器BaseExecutor，会有一级缓层，子类有：simpleExecutor，BatchExcutor，ReuseExcutor  
     @Test
     public void testBaseExecutor() throws Exception {
         
@@ -103,7 +103,7 @@ public class ExecutorTest {
     }
 
 
-    // 二级缓存cachingExecutor
+    // 二级缓存执行器，cachingExecutor
     @Test
     public void testCachingExecutor() throws Exception {
         
@@ -118,6 +118,7 @@ public class ExecutorTest {
     }
 
 
+    //sqlSession 门面模式提供访问jdbc的api
     @Test
     public void sqlSessionTest(){
         Course course =  sqlSessionFactory.openSession().selectOne("com.hcw.learn.mybatis.mapper.CourseMapper.getOne",2l);
