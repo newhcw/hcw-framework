@@ -1,5 +1,7 @@
 package com.hcw.framework.learn.jdk14;
 
+import com.hcw.framework.learn.ddd.domain.Order;
+
 public class TextBlocks {
 
     public static void main(String[] args) {
@@ -20,6 +22,7 @@ public class TextBlocks {
 
         System.out.println(multiLineString2);
 
+        Order order = new Order();
     }
     
 }
