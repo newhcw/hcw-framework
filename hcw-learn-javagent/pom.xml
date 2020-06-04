@@ -8,35 +8,27 @@
   </parent>
 
   <groupId>com.hcw.framework</groupId>
-  <artifactId>hcw-learning</artifactId>
+  <artifactId>hcw-learn-javagent</artifactId>
   <version>1.0.0.SNAPSHOT</version>
 
-  <name>hcw-learning</name>
+  <name>hcw-learn-javagent</name>
 
-  <properties>
-		<maven.compiler.source>14</maven.compiler.source>
-    	<maven.compiler.target>14</maven.compiler.target>
-  </properties>
+
   
+
   <dependencies>
     <dependency>
-        <groupId>com.bladejava</groupId>
-        <artifactId>blade-mvc</artifactId>
-        <version>2.0.15.RELEASE</version>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
     </dependency>
+
   </dependencies>
 
-   <build>
-    <pluginManagement>
+  <build>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <release>14</release>
-            <compilerArgs>--enable-preview</compilerArgs>
-          </configuration>
-        </plugin>
-
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
@@ -48,8 +40,8 @@
                       <addClasspath>true</addClasspath>
                   </manifest>
                   <manifestEntries>
-                      <Premain-Class>com.hcw.framework.learn.agent.PreMainTraceAgent</Premain-Class>
-                      <Agent-Class>com.hcw.framework.learn.agent.PreMainTraceAgent</Agent-Class>
+                      <Premain-Class>com.hcw.learn.javagent.PreMainTraceAgent</Premain-Class>
+                      <Agent-Class>com.hcw.learn.javagent.PreMainTraceAgent</Agent-Class>
                       <Can-Redefine-Classes>true</Can-Redefine-Classes>
                       <Can-Retransform-Classes>true</Can-Retransform-Classes>
                   </manifestEntries>
@@ -59,5 +51,4 @@
       </plugins>
     </pluginManagement>
   </build>
-
 </project>
