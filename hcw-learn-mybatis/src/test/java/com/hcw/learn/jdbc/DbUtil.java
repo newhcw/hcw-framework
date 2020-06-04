@@ -19,6 +19,7 @@ public class DbUtil {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        
     }
 
     public static Connection openConnection() throws SQLException {

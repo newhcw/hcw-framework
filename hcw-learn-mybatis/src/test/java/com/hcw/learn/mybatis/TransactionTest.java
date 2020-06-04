@@ -56,13 +56,13 @@ public class TransactionTest {
         
             @Override
             public void run() {
-                try {
-                    Connection conn = DbUtil.openConnection();
+               
+                try ( Connection conn = DbUtil.openConnection()) {
                     conn.setAutoCommit(true);
                     int updateResult = DbUtil.update(conn, "update t_course set  cover='hello world"+UUID.randomUUID()+"' where course_id=2");
                     LOG.info("update sql execute result:"+updateResult+"*************");
                     countDownLatch.countDown();
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 
