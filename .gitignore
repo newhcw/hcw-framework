@@ -3,6 +3,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+logs/
+.gitignore
 
 ### STS ###
 .apt_generated
@@ -29,13 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
-hcw-redis-springboot-start/logs/hcw-redis-springboot-start.2020-05-09.log
-logs/ding-api-gateway.2020-05-08.log
-logs/hcw-redis-springboot-start.2020-05-08.log
-logs/hcw-redis-springboot-start.2020-05-09.log
-logs/hcw-kafka-springboot-start.2020-05-09.log
-hcw-kafka-springboot-starter/logs/hcw-kafka-springboot-start.2020-05-09.log
-hcw-kafka-springboot-starter/logs/hcw-kafka-springboot-start.2020-05-10.log
+hcw-kafka-springboot-starter/logs/
 .DS_Store
-hcw-redis-springboot-starter/logs/hcw-redis-springboot-starter.2020-05-10.log
-hcw-learn-mybatis/logs/hcw-learn-mybatis.2020-06-02.log
+hcw-redis-springboot-starter/logs/
+hcw-learn-mybatis/logs/
