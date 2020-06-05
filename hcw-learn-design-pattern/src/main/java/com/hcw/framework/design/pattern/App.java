@@ -5,7 +5,7 @@ import java.util.Calendar;
 /**
  * Hello world!
  */
-public final class App {
+public final class App{
     private App() {
     }
 

@@ -1,22 +1,16 @@
 package com.hcw.framework.design.pattern.bridge;
 
-import lombok.Data;
 import lombok.Setter;
 
 @Setter
 public abstract class SDK {
 
-    private SDKLogin sdkLogin;
-    private SDKCreate sdkCreate;
-    private SDKPublish sdkPublish;
-    private SDKStart sdkStart;
+    protected SDKLogin sdkLogin;//策略模式这里用protected修饰,只能子类或者同包下类使用
+    protected SDKCreate sdkCreate;
+    protected SDKPublish sdkPublish;
+    protected SDKStart sdkStart;
 
-    void init() {
-        sdkLogin.login();//登录
-        sdkStart.start();//启动逻辑
-        sdkCreate.create();//创建
-        sdkPublish.publish();//发布
-    }
+    abstract void init();
 
 
 }
