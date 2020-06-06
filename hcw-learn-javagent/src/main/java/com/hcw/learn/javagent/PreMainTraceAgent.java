@@ -1,14 +1,13 @@
 package com.hcw.learn.javagent;
 
-import java.lang.instrument.ClassFileTransformer;
-import java.lang.instrument.IllegalClassFormatException;
-import java.lang.instrument.Instrumentation;
-import java.security.ProtectionDomain;
-
+import javassist.ClassClassPath;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
-import javassist.NotFoundException;
+
+import java.lang.instrument.ClassFileTransformer;
+import java.lang.instrument.Instrumentation;
+import java.security.ProtectionDomain;
 
 /**
  * JVM启动前静态Instrument# 使用 javaagent 需要几个步骤： 定义一个 MANIFEST.MF 文件，必须包含
@@ -18,54 +17,37 @@ import javassist.NotFoundException;
  */
 public class PreMainTraceAgent {
 
-    public static void premain(final String agentArgs, final Instrumentation inst) {
+    public static void premain(final String agentArgs, final Instrumentation instrumentation) {
         System.out.println("premain agentArgs : " + agentArgs);
-        inst.addTransformer(new DefineTransformer());
-    }
 
-    public static void agentmain(final String agentArgs, final Instrumentation instrumentation) {
-        System.out.println("agentmain agentArgs : " + agentArgs);
-        instrumentation.addTransformer(new DefineTransformer());
-    }
 
-    static class DefineTransformer implements ClassFileTransformer {
+        ClassPool classPool = new ClassPool();
+        classPool.appendSystemPath();
+        classPool.insertClassPath(new ClassClassPath(PreMainTraceAgent.class));
 
-        @Override
-        public byte[] transform(final ClassLoader loader, final String className, final Class<?> classBeingRedefined,
-                final ProtectionDomain protectionDomain, final byte[] classfileBuffer)
-                throws IllegalClassFormatException {
-             System.out.println("premain load Class:" + loader.getName());
-            ClassPool classPool = ClassPool.getDefault();
-            classPool.appendSystemPath();
-
-            if (className.contains("com/hcw/learn/javagent/AppTest")) {
-
-                // classPool.appendClassPath(loader.getName())
-
-                try {
-
-                    // Class userClass = Class.forName(
-                    // "com.hcw.learn.javagent.AppTest",
-                    // true,
-                    // ClassLoader.getSystemClassLoader());
-
-                    final CtClass cc = classPool.get("com.hcw.learn.javagent.AppTest");
-                    final CtMethod method = cc.getDeclaredMethod("startWork");
-                    // CtMethod method = classPool.getMethod("com.hcw.learn.javagent.UserService",
-                    // "startWork");
-                    method.insertAfter("System.out.println(System.currentTimeMillis());");
-
-                    final byte[] byteCode = cc.toBytecode();
-
-                    return byteCode;
-                } catch (final Exception e) {
-                    e.printStackTrace();
+        instrumentation.addTransformer(new ClassFileTransformer() {
+            @Override
+            public byte[] transform(final ClassLoader loader, final String className,
+                    final Class<?> classBeingRedefined, final ProtectionDomain protectionDomain,
+                    final byte[] classfileBuffer) {
+                //System.out.println("premain load Class:" + className);
+                if (className.contains("com/hcw/learn/javagent/UserService")) {
+                   
+                    try {
+                        CtClass cc = classPool.get(className.replaceAll("/", "."));
+                        CtMethod method = cc.getDeclaredMethod("startWork");
+                        method.insertBefore("111;");
+                        return cc.toBytecode();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                   
                 }
-            } else {
-                return null;
+                return classfileBuffer;
             }
-
-            return classfileBuffer;
-        }
+        });
     }
+
+    
+
 }

@@ -9,7 +9,7 @@
 
   <groupId>com.hcw.framework</groupId>
   <artifactId>hcw-learn-javagent</artifactId>
-  <version>1.0.0.SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
 
   <name>hcw-learn-javagent</name>
 
@@ -47,9 +47,8 @@
                   </manifest>
                   <manifestEntries>
                       <Premain-Class>com.hcw.learn.javagent.PreMainTraceAgent</Premain-Class>
-                      <!-- <Agent-Class>com.hcw.learn.javagent.PreMainTraceAgent</Agent-Class> -->
-                      <Can-Redefine-Classes>true</Can-Redefine-Classes>
-                      <Can-Retransform-Classes>true</Can-Retransform-Classes>
+                      <Can-Redefine-Classes>false</Can-Redefine-Classes>
+                      <Can-Retransform-Classes>false</Can-Retransform-Classes>
                   </manifestEntries>
               </archive>
           </configuration>
