@@ -32,11 +32,11 @@ public class PreMainTraceAgent {
                     final byte[] classfileBuffer) {
                 //System.out.println("premain load Class:" + className);
                 if (className.contains("com/hcw/learn/javagent/UserService")) {
-                   
+
                     try {
                         CtClass cc = classPool.get(className.replaceAll("/", "."));
                         CtMethod method = cc.getDeclaredMethod("startWork");
-                        method.insertBefore("111;");
+                        method.insertBefore("System.out.println(System.currentTimeMillis());");
                         return cc.toBytecode();
                     } catch (Exception e) {
                         e.printStackTrace();
