@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RedisComponent implements Component{
+    @Override
     public List<Object> queryList() {
 
         System.out.println("query data from redis");
