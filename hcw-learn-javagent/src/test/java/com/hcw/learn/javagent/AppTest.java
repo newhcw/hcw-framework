@@ -9,8 +9,7 @@ public class AppTest
 
 
     public static void main(String[] args) {
-        /// UserService userService = new UserService();
-        // userService.startWork();
+        new  UserService().startWork(" hello world");
     }
 
 }
