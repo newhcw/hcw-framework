@@ -1,11 +1,13 @@
 package com.hcw.learn.mybatis;
 
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
 import com.github.pagehelper.PageHelper;
 import com.hcw.learn.mybatis.entity.Course;
+import com.hcw.learn.mybatis.executor.MyExecutor;
 import com.hcw.learn.mybatis.mapper.CourseMapper;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -130,5 +132,12 @@ public class ExecutorTest {
         CourseMapper mapper = (CourseMapper) sqlSessionFactory.openSession().getMapper(CourseMapper.class);
         LOG.info("query {}",mapper.getOne(1l));
     }
-
+    // 自定义excutor
+    @Test
+    public void myExcutor() throws SQLException {
+        Executor executor = new SimpleExecutor(configuration, jdbcTransaction);
+        MyExecutor myExecutor = new MyExecutor(executor);
+        myExecutor.query(mappedStatement, 1, RowBounds.DEFAULT, Executor.NO_RESULT_HANDLER);
+        myExecutor.commit(true);// 先走二级缓存，再走一级缓存
+    }
 }
