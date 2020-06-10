@@ -124,6 +124,7 @@ public class ExecutorTest {
         LOG.info("query {}",courses);
     }
 
+    // mapper代理调用
     @Test
     public void sqlSessionMapper(){
         CourseMapper mapper = (CourseMapper) sqlSessionFactory.openSession().getMapper(CourseMapper.class);
