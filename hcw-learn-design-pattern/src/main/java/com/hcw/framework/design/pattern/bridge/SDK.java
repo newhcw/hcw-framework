@@ -5,11 +5,18 @@ import lombok.Setter;
 @Setter
 public abstract class SDK {
 
-    protected SDKLogin sdkLogin;//策略模式这里用protected修饰,只能子类或者同包下类使用
+    /**
+     * 桥梁模式这里用protected修饰,只能子类或者同包下类使用
+     */
+    protected SDKLogin sdkLogin;
     protected SDKCreate sdkCreate;
     protected SDKPublish sdkPublish;
     protected SDKStart sdkStart;
 
+
+    /**
+     * 初始化方法
+     */
     abstract void init();
 
 

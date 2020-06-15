@@ -23,6 +23,9 @@
         <module>hcw-hbase-springboot-starter</module>
         <module>hcw-learn-mybatis</module>
         <module>hcw-learn-javagent</module>
+        <module>hcw-learn-log4j</module>
+        <module>hcw-learn-log4j2</module>
+        <module>hcw-learn-slflog</module>
     </modules>
 
 
