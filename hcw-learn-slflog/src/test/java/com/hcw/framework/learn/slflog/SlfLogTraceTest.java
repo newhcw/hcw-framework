@@ -64,6 +64,19 @@ import org.junit.Test;
  *             <artifactId>log4j-over-slf4j</artifactId>
  *             <version>2.0.0-alpha1</version>
  *         </dependency>
+ *         或者
+ *                 <!--  log4j-over-slf4j  log4j 顺序决定了加载那个jar-->
+ *         <dependency>
+ *             <groupId>org.slf4j</groupId>
+ *             <artifactId>log4j-over-slf4j</artifactId>
+ *             <version>2.0.0-alpha1</version>
+ *         </dependency>
+ *
+ *         <dependency>
+ *             <groupId>log4j</groupId>
+ *             <artifactId>log4j</artifactId>
+ *             <version>1.2.17</version>
+ *         </dependency>
  */
 public class SlfLogTraceTest {
 
