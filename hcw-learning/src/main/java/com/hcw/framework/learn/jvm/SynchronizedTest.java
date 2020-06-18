@@ -8,7 +8,7 @@ public class SynchronizedTest {
 
 
     public static void main(String[] args) throws Exception {
-        test1();
+        test6();
     }
     /**
      * 一、正常创建的对象，状态为无锁，观察hashcode和age的变化
@@ -117,7 +117,7 @@ public class SynchronizedTest {
                         }
                     }
                     try {
-                        Thread.sleep(10000);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
