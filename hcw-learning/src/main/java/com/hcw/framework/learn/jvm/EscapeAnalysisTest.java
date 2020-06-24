@@ -8,9 +8,11 @@ package com.hcw.framework.learn.jvm;
 public class EscapeAnalysisTest {
 
     public static void main(String[] args) {
-        for (int i = 0; i < 1000000000; i++) {
+        long curtime = System.currentTimeMillis();
+        for (int i = 0; i < 10000000; i++) {
             byte[] b = new byte[2];
         }
+        System.out.println((System.currentTimeMillis()-curtime) + "ms");
     }
 
 }
