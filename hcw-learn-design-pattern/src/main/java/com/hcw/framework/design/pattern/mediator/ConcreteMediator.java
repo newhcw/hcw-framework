@@ -5,7 +5,7 @@ package com.hcw.framework.design.pattern.mediator;
  */
 public class ConcreteMediator implements Mediator {
 
-    ConcreteColleague concreteColleague = new ConcreteColleague();
+    ConcreteColleague concreteColleague = new ConcreteColleague();//这里没抽象,违反了依赖倒置原则
     ConcreteColleagueB concreteColleagueB = new ConcreteColleagueB();
 
     @Override

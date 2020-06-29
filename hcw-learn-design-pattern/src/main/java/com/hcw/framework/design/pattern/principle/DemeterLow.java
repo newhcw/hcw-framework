@@ -3,6 +3,9 @@ package com.hcw.framework.design.pattern.principle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 迪米特法则实例
+ */
 public class DemeterLow {
 
 
