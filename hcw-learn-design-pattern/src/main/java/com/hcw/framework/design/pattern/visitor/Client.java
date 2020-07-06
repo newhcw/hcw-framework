@@ -8,13 +8,23 @@ public class Client {
 
     public static void main(String[] args) {
 
-        Visitor worthAnalysistVisitor = new WorthAnalysistVisitor();//添加价值分析功能
+        // 企业用户
         EnterpriceCustomer enterpriceCustomer = new EnterpriceCustomer();
-        enterpriceCustomer.accept(worthAnalysistVisitor);
+        // 普通用户
+        CommonCustomer commonCustomer = new CommonCustomer();
 
-        // add 产品偏好功能
+        // add 产品偏好分析功能
         ProductPreferVisitor productPreferVisitor = new ProductPreferVisitor();
+        // 给企业用户添加产品偏好分析功能
         enterpriceCustomer.accept(productPreferVisitor);
+        // 给普通用户添加产品偏好分析功能
+        commonCustomer.accept(productPreferVisitor);
 
+        //添加价值分析功能
+        Visitor worthAnalysistVisitor = new WorthAnalysistVisitor();
+        // 给企业用户添加价值分析功能
+        enterpriceCustomer.accept(worthAnalysistVisitor);
+        // 给普通用户添加价值分析功能
+        commonCustomer.accept(worthAnalysistVisitor);
     }
 }

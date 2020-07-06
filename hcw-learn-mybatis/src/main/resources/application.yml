@@ -3,7 +3,8 @@ spring:
     name: hcw-learn-mybatis
   datasource:
     druid:
-      url: jdbc:mysql://47.100.240.207:5555/test?useUnicode=true&characterEncoding=utf8
+      # MySQL 8.0 以上版本，数据库 URL 需要声明是否使用 SSL 安全验证及指定服务器上的时区
+      url: jdbc:mysql://47.100.240.207:5555/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
       username: root
       password: Root@123
       driver-class-name: com.mysql.cj.jdbc.Driver
