@@ -4,6 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 
 import com.hcw.framework.design.pattern.entity.Bean;
 
+/**
+ * 工厂模式与反射结合,用于对象获取.
+ */
 public class SimpleBeanFactory implements BeanFactory {
 
     @Override

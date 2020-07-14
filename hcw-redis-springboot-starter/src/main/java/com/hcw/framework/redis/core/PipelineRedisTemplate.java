@@ -2,9 +2,11 @@ package com.hcw.framework.redis.core;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.StringRedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -38,4 +40,25 @@ public class PipelineRedisTemplate {
         System.out.println(res);
     }
 
+
+    /**
+     * 批量查询
+     * @param keys
+     * @return
+     */
+    public List<Object> getValueByKeys(final List<String> keys) {
+        if(CollectionUtils.isEmpty(keys)) {
+            return null;
+        }
+        return redisTemplate.executePipelined(new RedisCallback<Object>() {
+            @Override
+            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+                StringRedisConnection stringRedisConn = (StringRedisConnection) connection;
+                for (String key : keys) {
+                    stringRedisConn.get(key);
+                }
+                return null;
+            }
+        });
+    }
 }
