@@ -8,11 +8,11 @@ public class Records {
 
         //after jdk14 
         // 定义
-        record Image(String mediaId){}
-        // 使用
-        Image image = new Image("传mediaId");
-        // 取里面的值
-        System.out.println(image.mediaId());
+//        record Image(String mediaId){}
+//        // 使用
+//        Image image = new Image("传mediaId");
+//        // 取里面的值
+//        System.out.println(image.mediaId());
     }
 
 }

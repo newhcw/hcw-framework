@@ -11,9 +11,9 @@ public class PatternMatchingForInstanceOf {
         }
 
         //after jdk14
-        if(obj instanceof String str2){
-            System.out.println(str2);
-        }
+//        if(obj instanceof String str2){
+//            System.out.println(str2);
+//        }
 
     }
     
