@@ -11,16 +11,18 @@ import java.nio.channels.WritableByteChannel;
 //App Classloader是他的父类
 public class MyClassLoader extends ClassLoader {
 
-    public MyClassLoader(ClassLoader classLoader,String  name) {
+    private String path = "";
+
+    public MyClassLoader(ClassLoader classLoader,String  name,String path) {
         super(name,classLoader);
+        this.path = path;
     }
 
     @Override
     protected Class<?> findClass(String name) {
         byte[] bytes = new byte[0];
         try {
-            bytes = getClassBytes(new File("D:\\workspace\\hcw-framework\\hcw-learning\\target\\classes\\com\\hcw\\framework\\learn\\ddd\\domain\\Order.class"
-            ));
+            bytes = getClassBytes(new File(path));
         } catch (Exception e) {
             e.printStackTrace();
         }

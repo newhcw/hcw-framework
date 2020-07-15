@@ -11,7 +11,7 @@ import com.hcw.framework.learn.ddd.repository.IProductRepository;
 public class Order {
     private static int i=2;
     static {
-        System.out.println("由"+Order.class.getClassLoader().getName()+"类加载器加载成功,");
+        System.out.println("Order由"+Order.class.getClassLoader().getName()+"类加载器加载成功,");
         System.out.println(i);
     }
     public Order(){
