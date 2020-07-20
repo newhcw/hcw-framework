@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>14</maven.compiler.source>
-        <maven.compiler.target>14</maven.compiler.target>
+        <maven.compiler.source>13</maven.compiler.source>
+        <maven.compiler.target>13</maven.compiler.target>
     </properties>
 
 
@@ -26,6 +26,7 @@
         <module>hcw-learn-log4j</module>
         <module>hcw-learn-log4j2</module>
         <module>hcw-learn-slflog</module>
+        <module>hcw-learn-jdbc</module>
     </modules>
 
 

@@ -13,5 +13,7 @@ public class Client {
         StrategyFactory strategyFactory = new StrategyFactory();
         strategyFactory.getStrategy("*").excute();
 
+        int i=99;
+        int j=19;
     }
 }
