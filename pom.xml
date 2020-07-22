@@ -27,6 +27,7 @@
         <module>hcw-learn-log4j2</module>
         <module>hcw-learn-slflog</module>
         <module>hcw-learn-jdbc</module>
+        <module>hcw-learn-mylog</module>
     </modules>
 
 
