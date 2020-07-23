@@ -28,6 +28,7 @@
         <module>hcw-learn-slflog</module>
         <module>hcw-learn-jdbc</module>
         <module>hcw-learn-mylog</module>
+        <module>hcw-learn-junit-mock</module>
     </modules>
 
 
