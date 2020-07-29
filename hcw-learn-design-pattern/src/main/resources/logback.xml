@@ -10,7 +10,7 @@
 
 	<appender name="FILEAPPEND" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>./logs/hcw-learn-mybatis.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>./logs/hcw-kafka-springboot-start.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <append>true</append>
@@ -28,9 +28,8 @@
         <appender-ref ref="FILEAPPEND" />
         <includeCallerData>true</includeCallerData>
     </appender>
-    <logger name="com.hcw.learn.mybatis.mapper" level="debug"/>
-
-    <root level="debug">
+    
+    <root level="DEBUG">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>

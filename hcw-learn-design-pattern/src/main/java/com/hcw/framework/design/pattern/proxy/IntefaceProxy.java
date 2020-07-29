@@ -9,7 +9,7 @@ public class IntefaceProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         //return method.invoke(this, args);
-        System.out.println("sss");
+        //rpc调用
         return null;
     }
 }
