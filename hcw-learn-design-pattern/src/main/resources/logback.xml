@@ -4,7 +4,7 @@
     <property name="LEVEL" value="INFO" />
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>[%file:%line]%date{yyyy-MM-dd HH:mm:ss.SSS} %blue([%level]) %red({%thread}) %msg%n</Pattern>
+            <Pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %blue([%level]) %red({%thread}) %msg%n</Pattern>
         </layout>
     </appender>
 
