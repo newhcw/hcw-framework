@@ -1,0 +1,33 @@
+
+<!--
+    根元素为students
+    注意XML文件中有且仅有一个根元素
+-->
+<students>
+    <!--
+        子元素student
+        id属性同样可以作为student的子元素
+        为了演示方便，这里将其作为属性
+    -->
+    <student id="123">
+        <!--
+            student有三个子元素
+            name、age、gender
+         -->
+        <name>xuhuanfeng</name>
+        <age>22</age>
+        <gender>male</gender>
+    </student>
+    <!--同上-->
+    <student id="456">
+        <name>Tom</name>
+        <age>23</age>
+        <gender>femal</gender>
+    </student>
+    <!--同上-->
+    <student id="789">
+        <name>Lily</name>
+        <age>24</age>
+        <gender>femal</gender>
+    </student>
+</students>
