@@ -29,6 +29,7 @@ public class ConstructorTest {
 class Child extends ConstructorTest {
 
 
+
     public Child() {
         System.out.println("child init");
     }
