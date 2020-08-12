@@ -30,6 +30,7 @@
         <module>hcw-learn-mylog</module>
         <module>hcw-learn-junit-mock</module>
         <module>hcw-learn-hsqldb</module>
+        <module>hcw-learn-jvm</module>
     </modules>
 
 
