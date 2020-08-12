@@ -63,8 +63,12 @@ public class JdbcRegister {
         return null;
     }
 
-    public void setParameter(PreparedStatement preparedStatement,Object parameter) {
-
+    public void setParameter(PreparedStatement preparedStatement,Object parameter) throws SQLException {
+        MetaClass meta = new MetaClass(parameter.getClass());
+        int parameterCount = preparedStatement.getParameterMetaData().getParameterCount();
+        for (int i = 0; i < parameterCount; i++) {
+            preparedStatement.setObject(i+1,null);
+        }
     }
 
     public void execute(){
