@@ -71,8 +71,8 @@ public class JdbcRegister {
         }
     }
 
-    public void execute(){
-
+    public void execute(PreparedStatement preparedStatement) throws SQLException {
+        preparedStatement.execute();
     }
 
 }
