@@ -31,7 +31,7 @@ public class MockTest {
         list.add(3);
         list.add(3);
         list.add(3);
-        verify(list, times(1)).add(2);
+        verify(list).add(2);
         verify(list, times(3)).add(3);// add(3) 方法调用3次
     }
 
