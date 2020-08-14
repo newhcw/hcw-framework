@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Properties;
 
 /**
- * 保证jdk自带的properties类,解决读取中文乱码
+ * 包装jdk自带的properties类,解决读取中文乱码
  */
 public class PropertiesWrapper {
 
@@ -12,8 +12,8 @@ public class PropertiesWrapper {
 
     public Properties load(String path, String charsetName) throws IOException {
         InputStream inputStream = ClassLoader.getSystemResourceAsStream(path);
-        BufferedReader bufferedInputStream = new BufferedReader(new InputStreamReader(inputStream, charsetName));
-        properties.load(bufferedInputStream);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, charsetName));
+        properties.load(bufferedReader);
         return properties;
     }
 }
