@@ -1,5 +1,6 @@
 package com.hcw.framework.mybatis.plus.session;
 
+import com.hcw.framework.mybatis.plus.binding.MapperRegistry;
 import com.hcw.framework.mybatis.plus.mapping.MappedStatement;
 
 import java.util.HashMap;
@@ -13,6 +14,8 @@ public class Configuration {
     public static String user = "root";
     public static String password = "Root@123";
 
+    private MapperRegistry mapperRegistry = new MapperRegistry(this);
+
     public MappedStatement getMappedStatement(String id) {
         return mappedStatements.get(id);
     }
@@ -20,5 +23,13 @@ public class Configuration {
     public void addMapperStatement(MappedStatement mappedStatement) {
         mappedStatements.put(mappedStatement.getId(),mappedStatement);
 
+    }
+
+    public <T> void addMapper(Class<T> type) {
+        mapperRegistry.addMapper(type);
+    }
+
+    public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
+        return mapperRegistry.getMapper(type, sqlSession);
     }
 }

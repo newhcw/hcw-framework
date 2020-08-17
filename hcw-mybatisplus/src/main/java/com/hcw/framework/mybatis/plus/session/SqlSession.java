@@ -13,4 +13,6 @@ public interface SqlSession {
     Object insert(String statementId, Object parameter);
 
     <T> T getMapper(Class<T> type);
+
+    Configuration getConfiguration();
 }
