@@ -34,14 +34,12 @@ public class DefaultSqlSessionTest {
         mappedStatement.setSqlCommandType(SqlCommandType.SELECT);
         mappedStatement.setId("com.hcw.framework.mybatis.plus.session.CourseMapper.getOne");
         mappedStatement.setSql("SELECT * FROM t_course WHERE course_id = 1");
-
         configuration.addMapperStatement(mappedStatement);
-
         configuration.addMapper(CourseMapper.class);
-
-
         DefaultSqlSessionFactory defaultSqlSessionFactory = new DefaultSqlSessionFactory(configuration);
         SqlSession  sqlSession = defaultSqlSessionFactory.openSession();
+
+
         CourseMapper courseMapper = sqlSession.getMapper(CourseMapper.class);
         Course course = courseMapper.getOne(1l);
         Assertions.assertNotNull(course);
