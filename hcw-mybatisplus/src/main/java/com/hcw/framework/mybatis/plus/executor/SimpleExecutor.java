@@ -21,6 +21,7 @@ public class SimpleExecutor extends BaseExecutor{
         StatementHandler statementHandler = new PrepareStatementHandler();
         Transaction transaction = new JdbcTransaction();
         Statement statement;
+
         try {
             statement = statementHandler.prepare(transaction.getConnection(), ms);
             return statementHandler.query(statement);
