@@ -1,5 +1,7 @@
 package com.hcw.framework.mybatis.plus.session;
 
+import com.hcw.framework.mybatis.plus.builder.SqlSource;
+import com.hcw.framework.mybatis.plus.builder.StaticSqlSource;
 import com.hcw.framework.mybatis.plus.mapping.MappedStatement;
 import com.hcw.framework.mybatis.plus.mapping.SqlCommandType;
 import com.hcw.framework.mybatis.plus.session.defaults.DefaultSqlSessionFactory;
@@ -17,8 +19,8 @@ public class DefaultSqlSessionTest {
         Configuration configuration = new Configuration();
         MappedStatement mappedStatement = new MappedStatement();
         mappedStatement.setId("com.hcw.framework.mybatis.plus.session.CourseMapper.getOne");
-        mappedStatement.setSql("SELECT * FROM t_course WHERE course_id = 1");
-        configuration.addMapperStatement(mappedStatement);
+        SqlSource sqlSource = new StaticSqlSource("SELECT * FROM t_course WHERE course_id = #{id}");
+        mappedStatement.setSqlSource(sqlSource);        configuration.addMapperStatement(mappedStatement);
 
 
         DefaultSqlSessionFactory defaultSqlSessionFactory = new DefaultSqlSessionFactory(configuration);
@@ -32,8 +34,11 @@ public class DefaultSqlSessionTest {
         Configuration configuration = new Configuration();
         MappedStatement mappedStatement = new MappedStatement();
         mappedStatement.setSqlCommandType(SqlCommandType.SELECT);
-        mappedStatement.setId("com.hcw.framework.mybatis.plus.session.CourseMapper.getOne");
-        mappedStatement.setSql("SELECT * FROM t_course WHERE course_id = 1");
+        mappedStatement.setId("com.hcw.framework.mybatis.plus.session.CourseMapper.queryOne");
+
+        SqlSource sqlSource = new StaticSqlSource("SELECT * FROM t_course WHERE course_id = #{courseId}");
+        mappedStatement.setSqlSource(sqlSource);
+
         configuration.addMapperStatement(mappedStatement);
         configuration.addMapper(CourseMapper.class);
         DefaultSqlSessionFactory defaultSqlSessionFactory = new DefaultSqlSessionFactory(configuration);
@@ -41,7 +46,7 @@ public class DefaultSqlSessionTest {
 
 
         CourseMapper courseMapper = sqlSession.getMapper(CourseMapper.class);
-        Course course = courseMapper.getOne(1l);
+        Course course = courseMapper.queryOne(new Course());
         Assertions.assertNotNull(course);
     }
 }

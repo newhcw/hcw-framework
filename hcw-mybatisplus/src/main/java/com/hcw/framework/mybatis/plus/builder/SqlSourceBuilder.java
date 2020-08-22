@@ -7,25 +7,26 @@ import java.util.Map;
 
 public class SqlSourceBuilder {
 
-    // String sql = "select * from user where id = #{id} and user_name=#{userName}"
-    public SqlSource parse(String sql) {
+    // String sql = "select * from user where id = #{id} and user_name=#{userName} and age=#{age} and school = #{school}"
+    public SqlSource parse(String sql,String openToken, String closeToken,List parameterList) {
 
-        int startTagIndex = 0;
+        int startAppend=0;
+        int start = sql.indexOf(openToken);
 
-        List parameterList = new ArrayList<>();
-        for (int i = startTagIndex; i < sql.length(); i++) {
-            if (sql.charAt(i) == '#'){
-
+        StringBuffer finalSql = new StringBuffer();
+        for (int i = start; i < sql.length(); i++) {
+            if (sql.charAt(i) == openToken.toCharArray()[0]){
+                finalSql.append(sql.substring(startAppend,i)).append("?");
+                startAppend = i;
             }
-            if (sql.charAt(i) == '}'){
-                parameterList.add(sql.substring(startTagIndex,i));
-                startTagIndex = i;
+            if (sql.charAt(i) == closeToken.toCharArray()[0]){
+                parameterList.add(sql.substring(startAppend+2,i));
+                startAppend= i+1;
             }
         }
 
 
-        StaticSqlSource staticSqlSource = new StaticSqlSource();
-        staticSqlSource.setSql(sql);
+        StaticSqlSource staticSqlSource = new StaticSqlSource(finalSql.toString());
         return staticSqlSource;
     }
 

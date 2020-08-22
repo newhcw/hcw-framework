@@ -6,6 +6,7 @@ import com.hcw.framework.mybatis.plus.session.SqlSession;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 public class MapperProxy implements InvocationHandler {
 
@@ -22,15 +23,14 @@ public class MapperProxy implements InvocationHandler {
         String statementId = className.concat(".").concat(methodName);
         MappedStatement mappedStatement = sqlSession.getConfiguration().getMappedStatement(statementId);
         SqlCommandType sqlCommandType = mappedStatement.getSqlCommandType();
-
         Object result = null;
 
         switch (sqlCommandType) {
             case SELECT:
-                result =  sqlSession.selectone(statementId, args);
+                result =  sqlSession.selectone(statementId, args[0]);
                 break;
             case UPDATE:
-                result = sqlSession.update(statementId, args);
+                result = sqlSession.update(statementId, args[0]);
                 break;
             default:
                 break;

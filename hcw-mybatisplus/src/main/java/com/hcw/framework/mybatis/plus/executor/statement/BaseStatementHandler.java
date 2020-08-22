@@ -1,5 +1,7 @@
 package com.hcw.framework.mybatis.plus.executor.statement;
 
+import com.hcw.framework.mybatis.plus.builder.SqlSource;
+import com.hcw.framework.mybatis.plus.builder.SqlSourceBuilder;
 import com.hcw.framework.mybatis.plus.mapping.MappedStatement;
 
 import java.sql.*;
@@ -11,12 +13,16 @@ public class BaseStatementHandler implements StatementHandler{
 
     @Override
     public Statement prepare(Connection connection, MappedStatement mappedStatement) throws SQLException {
-        return connection.prepareStatement(mappedStatement.getSql());
+        List paramterList = new ArrayList();
+        SqlSource sqlSource = new SqlSourceBuilder().parse(mappedStatement.getSqlSource().getSql(),"#{","}",paramterList);
+        mappedStatement.setSqlSource(sqlSource);
+        return connection.prepareStatement(sqlSource.getSql());
     }
 
     @Override
     public <E> List<E> query(Statement statement) throws SQLException {
         PreparedStatement ps = (PreparedStatement) statement;
+        // 交给paramterHandler处理参数set
         ps.execute();
         System.out.println(ps.getResultSet());
         return getResultSet(ps,Object.class);
