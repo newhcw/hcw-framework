@@ -12,6 +12,6 @@ public interface StatementHandler {
     Statement prepare(Connection connection, MappedStatement mappedStatement)
             throws SQLException;
 
-    <E> List<E> query(Statement statement)
+    <E> List<E> query(Statement statement,MappedStatement ms)
             throws SQLException;
 }

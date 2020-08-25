@@ -2,6 +2,8 @@ package com.hcw.framework.mybatis.plus.executor.statement;
 
 import com.hcw.framework.mybatis.plus.builder.SqlSource;
 import com.hcw.framework.mybatis.plus.builder.SqlSourceBuilder;
+import com.hcw.framework.mybatis.plus.executor.parameter.DefaultParameterHandler;
+import com.hcw.framework.mybatis.plus.executor.parameter.ParameterHandler;
 import com.hcw.framework.mybatis.plus.mapping.MappedStatement;
 
 import java.sql.*;
@@ -10,19 +12,20 @@ import java.util.List;
 
 public class BaseStatementHandler implements StatementHandler{
 
+    ParameterHandler paramterHandler = new DefaultParameterHandler();
 
     @Override
     public Statement prepare(Connection connection, MappedStatement mappedStatement) throws SQLException {
         List paramterList = new ArrayList();
-        SqlSource sqlSource = new SqlSourceBuilder().parse(mappedStatement.getSqlSource().getSql(),"#{","}",paramterList);
+        SqlSource sqlSource = new SqlSourceBuilder().parse(mappedStatement.getSqlSource().getBoundSql(null).getSql(),"#{","}",paramterList);
         mappedStatement.setSqlSource(sqlSource);
-        return connection.prepareStatement(sqlSource.getSql());
+        return connection.prepareStatement(sqlSource.getBoundSql(null).getSql());
     }
 
     @Override
-    public <E> List<E> query(Statement statement) throws SQLException {
+    public <E> List<E> query(Statement statement,MappedStatement ms) throws SQLException {
         PreparedStatement ps = (PreparedStatement) statement;
-        // 交给paramterHandler处理参数set
+        paramterHandler.parameterize(ps,ms);
         ps.execute();
         System.out.println(ps.getResultSet());
         return getResultSet(ps,Object.class);

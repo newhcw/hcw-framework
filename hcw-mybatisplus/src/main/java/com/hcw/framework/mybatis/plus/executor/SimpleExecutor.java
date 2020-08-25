@@ -1,18 +1,13 @@
 package com.hcw.framework.mybatis.plus.executor;
 
-import com.hcw.framework.mybatis.plus.builder.SqlSource;
-import com.hcw.framework.mybatis.plus.builder.SqlSourceBuilder;
 import com.hcw.framework.mybatis.plus.executor.statement.PrepareStatementHandler;
 import com.hcw.framework.mybatis.plus.executor.statement.StatementHandler;
 import com.hcw.framework.mybatis.plus.mapping.MappedStatement;
 import com.hcw.framework.mybatis.plus.transaction.Transaction;
 import com.hcw.framework.mybatis.plus.transaction.jdbc.JdbcTransaction;
 
-import java.lang.reflect.Constructor;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleExecutor extends BaseExecutor{
@@ -28,9 +23,8 @@ public class SimpleExecutor extends BaseExecutor{
         Statement statement;
 
         try {
-
             statement = statementHandler.prepare(transaction.getConnection(), ms);
-            return statementHandler.query(statement);
+            return statementHandler.query(statement,ms);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

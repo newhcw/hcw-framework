@@ -6,7 +6,6 @@ import com.hcw.framework.mybatis.plus.session.SqlSession;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 
 public class MapperProxy implements InvocationHandler {
 

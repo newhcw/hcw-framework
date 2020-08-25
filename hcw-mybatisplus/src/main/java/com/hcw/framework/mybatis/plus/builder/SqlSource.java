@@ -1,6 +1,7 @@
 package com.hcw.framework.mybatis.plus.builder;
 
-public interface SqlSource {
+import com.hcw.framework.mybatis.plus.mapping.BoundSql;
 
-    public String getSql();
+public interface SqlSource {
+    BoundSql getBoundSql(Object parameterObject);
 }
