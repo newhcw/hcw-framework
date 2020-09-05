@@ -7,45 +7,45 @@ import java.util.concurrent.*;
  */
 public class ThreadPoolTest {
 
-    public static void main(String[] args) {
-        String mainThreadName = Thread.currentThread().getName();
+    public static void main(String[] args) throws InterruptedException {
         TestPool testPool = new TestPool();
-        testPool.submit(new Callable() {
-            @Override
-            public Object call() throws Exception {
+        for (int i = 0; i < 5; i++) {
+            work(testPool);
+            Thread.currentThread().sleep(1000*10);
+        }
 
-                for (int i = 0; i < 9*10000; i++) {
-                    try {
-                        testPool.submit(new Callable<Object>() {
 
-                            @Override
-                            public Object call() {
-                                try{
-                                    String name = Thread.currentThread().getName();
-                                    int b = Integer.valueOf("21");
-                                    int i1 = Integer.parseInt("0.11");
-                                    int a = Integer.getInteger("");
-                                }catch (Exception e){
-                                    if (mainThreadName.equals(Thread.currentThread().getName())){
-                                        System.out.println(Thread.currentThread().getName()+";"+e.getStackTrace());
-                                    }
-                                }
-                                return "";
+    }
+
+    static void work(TestPool testPool) {
+        String mainThreadName = Thread.currentThread().getName();
+
+        for (int i = 0; i < 10; i++) {
+            try {
+                testPool.submit(new Callable<Object>() {
+
+                    @Override
+                    public Object call() {
+                        try{
+                            String name = Thread.currentThread().getName();
+                            int b = Integer.valueOf("21");
+                            int i1 = Integer.parseInt("0.11");
+                            int a = Integer.getInteger("");
+                        }catch (Exception e){
+                            if (mainThreadName.equals(Thread.currentThread().getName())){
+                                System.out.println(Thread.currentThread().getName()+";"+e.getStackTrace());
                             }
-                        });
-                    } catch (Exception e) {
-
-                        System.out.println(Thread.currentThread().getName()+";"+e.getStackTrace());
+                        }
+                        return "";
                     }
+                });
+            } catch (Exception e) {
 
-
-                }
-
-
-                return null;
+                System.out.println(Thread.currentThread().getName()+";"+e.getStackTrace());
             }
-        });
 
+
+        }
     }
 
     static class TestPool{
