@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.*;
 
+/**
+ * CallerRunsPolicy 拒绝策略，如果当前队列满了，又达到最大线程数，则使用调用线程执行。
+ */
 public class ThreadPoolTest2 {
 
     static Logger logger = LoggerFactory.getLogger(ThreadPoolTest2.class);

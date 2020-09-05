@@ -2,13 +2,15 @@ package com.hcw.learn.jdk;
 
 import java.util.concurrent.*;
 
+/**
+ * 线程池监控
+ */
 public class ThreadPoolTest {
 
     public static void main(String[] args) {
         String mainThreadName = Thread.currentThread().getName();
         TestPool testPool = new TestPool();
-        TestPool testPool2 = new TestPool();
-        testPool2.submit(new Callable() {
+        testPool.submit(new Callable() {
             @Override
             public Object call() throws Exception {
 
@@ -24,12 +26,10 @@ public class ThreadPoolTest {
                                     int i1 = Integer.parseInt("0.11");
                                     int a = Integer.getInteger("");
                                 }catch (Exception e){
-//                                    if (mainThreadName.equals(Thread.currentThread().getName())){
-//                                        System.out.println(Thread.currentThread().getName()+";"+e.getStackTrace());
-//                                    }
+                                    if (mainThreadName.equals(Thread.currentThread().getName())){
+                                        System.out.println(Thread.currentThread().getName()+";"+e.getStackTrace());
+                                    }
                                 }
-
-
                                 return "";
                             }
                         });
@@ -45,12 +45,6 @@ public class ThreadPoolTest {
                 return null;
             }
         });
-
-
-
-        Long now = System.currentTimeMillis();
-
-        System.out.println("total cost is "+(System.currentTimeMillis()-now)/1000 +"s");
 
     }
 
