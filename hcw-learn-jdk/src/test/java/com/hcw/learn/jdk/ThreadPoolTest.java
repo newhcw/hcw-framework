@@ -50,7 +50,7 @@ public class ThreadPoolTest {
 
     static class TestPool{
 
-        private ExecutorService executorService = new ThreadPoolExecutor(50,50,0L,TimeUnit.MILLISECONDS,new ArrayBlockingQueue<>(8000),new ThreadPoolExecutor.CallerRunsPolicy());
+        private ExecutorService executorService = new MyThreadPoolExecutor(50,50,0L,TimeUnit.MILLISECONDS,new ArrayBlockingQueue<>(8000),new ThreadPoolExecutor.CallerRunsPolicy());
 
         TestPool()  {
             new Thread(new Runnable() {
@@ -86,5 +86,31 @@ public class ThreadPoolTest {
             }
         }
 
+    }
+
+    static class MyThreadPoolExecutor extends ThreadPoolExecutor{
+
+
+        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, RejectedExecutionHandler handler) {
+            super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, handler);
+        }
+
+        @Override
+        protected void beforeExecute(Thread t, Runnable r) {
+            super.beforeExecute(t, r);
+            System.out.println("thread t will run task r");
+        }
+
+        @Override
+        protected void afterExecute(Runnable r, Throwable t) {
+            super.afterExecute(r, t);
+            System.out.println("thread t will runed task r");
+        }
+
+        @Override
+        protected void terminated() {
+            super.terminated();
+            System.out.println("thread terminated");
+        }
     }
 }
