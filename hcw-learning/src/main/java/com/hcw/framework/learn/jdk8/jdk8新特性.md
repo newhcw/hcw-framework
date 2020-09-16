@@ -1,7 +1,9 @@
-      简介：JDK8的主要新特性四个：Lambda、Stream、Date、新注解，前两者主要用于集合中。
+# java8 时间工具使用
+
+简介：JDK8的主要新特性四个：Lambda、Stream、Date、新注解，前两者主要用于集合中。
 
 
-3.4、获取当前时间
+## 1、获取当前时间
 
 Instant instant = Instant.now(); //获取当前时间戳
 
@@ -13,7 +15,7 @@ LocalDateTime localDateTime = LocalDateTime.now();  //获取当前具体时间
 
 ZonedDateTime zonedDateTime = ZonedDateTime.now();   //获取带有时区的时间
 
-3.5、字符串转换
+## 2、字符串转换
 jdk8：
 String str = "2019-01-11";
 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -28,7 +30,7 @@ try {
 }
 
 
-3.6、Date转换LocalDate
+## 3、Date转换LocalDate
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -49,7 +51,7 @@ public class Test {
     }
 }
 
-3.7、LocalDate转Date
+## 4、LocalDate转Date
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -71,7 +73,7 @@ public class Test {
     }
 }
 
-3.8、时间戳转LocalDateTime
+## 5、时间戳转LocalDateTime
 long timestamp = System.currentTimeMillis();
 
 Instant instant = Instant.ofEpochMilli(timestamp);
@@ -80,7 +82,7 @@ LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 
 
 
-3.9、LocalDateTime转时间戳
+## 6、LocalDateTime转时间戳
 LocalDateTime dateTime = LocalDateTime.now();
 
 dateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
