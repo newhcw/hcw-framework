@@ -15,7 +15,7 @@ LocalDateTime localDateTime = LocalDateTime.now();  //获取当前具体时间
 
 ZonedDateTime zonedDateTime = ZonedDateTime.now();   //获取带有时区的时间
 
-## 2、字符串转换
+## 2、字符串转换时间
 jdk8：
 String str = "2019-01-11";
 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -29,8 +29,14 @@ try {
     e.printStackTrace();
 }
 
+## 3、时间格式化成字符串
+LocalDate localDate = LocalDate.now();
+DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+String formatDate = localDate.format(dateTimeFormatter);
+System.out.println(formatDate);
 
-## 3、Date转换LocalDate
+
+## 4、Date转换LocalDate
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -51,7 +57,7 @@ public class Test {
     }
 }
 
-## 4、LocalDate转Date
+## 5、LocalDate转Date
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -73,7 +79,7 @@ public class Test {
     }
 }
 
-## 5、时间戳转LocalDateTime
+## 6、时间戳转LocalDateTime
 long timestamp = System.currentTimeMillis();
 
 Instant instant = Instant.ofEpochMilli(timestamp);
@@ -82,7 +88,7 @@ LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 
 
 
-## 6、LocalDateTime转时间戳
+## 7、LocalDateTime转时间戳
 LocalDateTime dateTime = LocalDateTime.now();
 
 dateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
