@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class JodaTimeTest {
@@ -68,4 +69,21 @@ public class JodaTimeTest {
 
     }
 
+    @Test
+    public void testDifferDate() {
+        LocalDate localDate = LocalDate.now();
+        LocalDate localDate1 = LocalDate.of(2020, 1, 30);
+        System.out.println(localDate.until(localDate1, ChronoUnit.DAYS));// 方法一:后面日期大于前面
+
+        System.out.println(Period.between(localDate,localDate1).getDays());//有坑,底层也是用的localDate.until() P13D
+
+        System.out.println(localDate1.toEpochDay()-localDate.toEpochDay());// 方法二:后面日期大于前面
+    }
+
+    @Test
+    public void testDayAfterToday() {
+        LocalDate localDate = LocalDate.now();
+        System.out.println(localDate.minusDays(1l));//昨天
+        System.out.println(localDate.plusDays(1));// 明天
+    }
 }

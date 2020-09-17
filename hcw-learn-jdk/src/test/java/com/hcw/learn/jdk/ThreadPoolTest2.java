@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import java.util.concurrent.*;
 
 /**
@@ -25,11 +26,8 @@ public class ThreadPoolTest2 {
             executorService.submit(new Runnable() {
                 @Override
                 public void run() {
-                    executorService2.submit(new Runnable() {
-                        @Override
-                        public void run() {
-                            logger.info(Thread.currentThread().getName());
-                        }
+                    executorService2.submit(()-> {
+                        logger.info(Thread.currentThread().getName());
                     });
                 }
             });

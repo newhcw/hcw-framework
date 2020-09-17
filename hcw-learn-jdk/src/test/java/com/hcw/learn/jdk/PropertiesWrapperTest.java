@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * 配置文件读取
+ */
 class PropertiesWrapperTest {
 
     private final String path = "test.properties";
