@@ -11,7 +11,7 @@ public class IntefaceProxy implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         //return method.invoke(this, args);
         //rpc调用
-        //System.out.println("invoke");
+        System.out.println("invoke");
         return null;
     }
 }
