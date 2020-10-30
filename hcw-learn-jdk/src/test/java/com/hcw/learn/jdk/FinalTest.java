@@ -2,6 +2,11 @@ package com.hcw.learn.jdk;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * 为什么局部内部类和匿名内部类只能访问局部final变量？
+ * 1 外部类的方法执行完了，匿名内部类拿不到这个值了，Java是采用值拷贝的方式保留的。
+ * 2 如果外部类在拷贝之后改变了值，那么这个拷贝的值就出现不一致了。
+ */
 public class FinalTest {
 
 
