@@ -1,6 +1,8 @@
 package com.hcw.framework.jdk8;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.blade.kit.UncheckedFnKit;
 
@@ -14,6 +16,11 @@ public class Test {
         .map(StackTraceElement::getClassName)
         .map(UncheckedFnKit.function(Class::forName))
         .orElse(null);
+
+
+        Map map = new HashMap<>();
+        map.put(1, 1);
+        System.out.println(map.size());
     }
     
 }
