@@ -1,7 +1,6 @@
 package cn.hasfun.learn.springcloud.consumer.client;
 
 import cn.hasfun.learn.springcloud.consumer.vo.Goods;
-import cn.hasfun.learn.springcloud.consumer.vo.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
