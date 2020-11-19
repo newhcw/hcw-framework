@@ -14,6 +14,12 @@ public class Goods implements Serializable {
 
     private String descr;
 
+    public Goods(String goodsId, String name, String descr) {
+        this.goodsId = goodsId;
+        this.name = name;
+        this.descr = descr;
+    }
+
     public String getGoodsId() {
         return goodsId;
     }
