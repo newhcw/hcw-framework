@@ -8,6 +8,10 @@ public class Goods implements Serializable {
 
     private String name;
 
+    public Goods(String descr) {
+        this.descr = descr;
+    }
+
     private String descr;
 
     public String getGoodsId() {

@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@FeignClient(value = "order-provider" , fallback  = MyHystrixClientFallbackFactory.class)
+@FeignClient(value = "order-provider" , fallbackFactory  = MyHystrixClientFallbackFactory.class)
 public interface OrderServiceClient {
 
     @RequestMapping("/goods/goodsInfo/{goodsId}")
