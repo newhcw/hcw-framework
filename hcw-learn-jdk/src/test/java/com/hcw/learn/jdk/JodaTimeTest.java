@@ -86,4 +86,20 @@ public class JodaTimeTest {
         System.out.println(localDate.minusDays(1l));//昨天
         System.out.println(localDate.plusDays(1));// 明天
     }
+
+    @Test
+    public void testTime() {
+        var curDateTime = LocalDate.now().plusDays(1).atTime(0,0,0);
+
+        long epochMilli3 =  curDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();// 写法 3
+
+        System.out.println(epochMilli3);
+
+
+        String date = "2020-12-30 00:00:00";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime localDate = LocalDateTime.parse(date, dateTimeFormatter);
+        long epochMilli4 =  localDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();// 写法 3
+        System.out.println(epochMilli4);
+    }
 }

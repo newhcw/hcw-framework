@@ -70,9 +70,10 @@ public class LombdaTest {
 //                .collect(Collectors.toMap(UserB::getId, en -> en));
 //
 //        result.entrySet().stream().forEach(v->System.out.println(v));
+        List<User> userList = List.of();
+        Map<Integer, Integer> collect = userList.stream().collect(Collectors.toMap(User::getI, User::getJ));
 
-
-        a.entrySet().stream().map(entry->{return new UserB(entry.getKey(),entry.getValue(),b.get(entry.getKey()));}).collect(Collectors.toMap(UserB::getId,user->user)).forEach((k,v)-> System.out.println(v.toString()));
+        //a.entrySet().stream().map(entry->{return new UserB(entry.getKey(),entry.getValue(),b.get(entry.getKey()));}).collect(Collectors.toMap(UserB::getId,user->user)).forEach((k,v)-> System.out.println(v.toString()));
 
     }
 
@@ -88,6 +89,12 @@ public class LombdaTest {
         System.out.println(max.get());
         userList.removeIf(v->v.getI()!=max.get());
         System.out.println(userList);
+    }
+
+    @Test
+    public void testOptional() {
+        System.out.println((String)Optional.ofNullable(null).orElse(""));
+
     }
 
 
