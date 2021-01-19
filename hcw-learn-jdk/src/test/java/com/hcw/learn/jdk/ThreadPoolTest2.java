@@ -1,5 +1,6 @@
 package com.hcw.learn.jdk;
 
+import lombok.Synchronized;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ public class ThreadPoolTest2 {
     static Logger logger = LoggerFactory.getLogger(ThreadPoolTest2.class);
 
     public static void main(String[] args) {
+
         ExecutorService executorService = new ThreadPoolExecutor(1,1,0L,TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(1), new ThreadFactory() {
                     @Override
                     public Thread newThread(@NotNull Runnable r) {
