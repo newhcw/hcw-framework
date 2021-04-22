@@ -32,6 +32,7 @@
         <module>hcw-learn-hsqldb</module>
         <module>hcw-learn-jvm</module>
         <module>hcw-learn-jdk</module>
+        <module>hcw-learn-guava</module>
         <module>hcw-mybatisplus</module>
         <module>hcw-learn-netty</module>
     </modules>
