@@ -1,5 +1,6 @@
 package com.hcw.learn.jdk;
 
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -70,19 +71,22 @@ public class LombdaTest {
 //                .collect(Collectors.toMap(UserB::getId, en -> en));
 //
 //        result.entrySet().stream().forEach(v->System.out.println(v));
-        List<User> userList = List.of();
-        Map<Integer, Integer> collect = userList.stream().collect(Collectors.toMap(User::getI, User::getJ));
-
-        //a.entrySet().stream().map(entry->{return new UserB(entry.getKey(),entry.getValue(),b.get(entry.getKey()));}).collect(Collectors.toMap(UserB::getId,user->user)).forEach((k,v)-> System.out.println(v.toString()));
+        List<User> userList = List.of(new User(1,1),new User(1,5));
+        Map<Integer, List> collect = userList.stream().collect(Collectors.toMap(User::getI,
+                e-> Lists.newArrayList(e),(List old, List news)->{
+               old.addAll(news);
+               return old;
+        }));
+        collect.entrySet().forEach(v-> System.out.println(v));
 
     }
 
 
     @Test
     public void testListObjectToInt() {
-        User user = new User();
+        User user = new User(1,2);
         user.setI(1667);
-        User user1 = new User();
+        User user1 = new User(1,2);
         user.setI(2);
         List<User> userList = List.of(user1,user);
         Optional<Integer> max = userList.stream().map(v -> v.getI()).max(Comparator.comparingInt(v -> v.intValue()));
@@ -98,11 +102,20 @@ public class LombdaTest {
     }
 
 
+    @Test
+    public void testnull() {
+        List<Integer> lst = new ArrayList<>();
+        Optional<Integer> first = lst.stream().filter(v -> v == 1).findFirst();
+    }
 
 
     class User{
         int i;
         int j;
+        User(int i,int j){
+            this.i = i;
+            this.j = j;
+        }
 
         public int getI() {
             return i;
@@ -119,5 +132,17 @@ public class LombdaTest {
         public void setJ(int j) {
             this.j = j;
         }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        List.of(1,2,3,4,5,6,7,8,10,2121).parallelStream().forEach(v->{
+
+            System.out.println(Thread.currentThread().getName());
+        });
+
+        List.of(1,2,3,4,5,6,7,8,10).parallelStream().forEach(v->{
+            System.out.println(Thread.currentThread().getName());
+        });
+        Thread.currentThread().sleep(1000*30);
     }
 }
