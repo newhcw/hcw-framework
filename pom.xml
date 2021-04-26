@@ -35,6 +35,7 @@
         <module>hcw-learn-guava</module>
         <module>hcw-mybatisplus</module>
         <module>hcw-learn-netty</module>
+        <module>hcw-learn-flink</module>
     </modules>
 
 
