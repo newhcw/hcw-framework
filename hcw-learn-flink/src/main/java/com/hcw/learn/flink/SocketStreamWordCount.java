@@ -5,6 +5,9 @@ import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
+/**
+ * nc -lk 7777
+ */
 public class SocketStreamWordCount {
 
     public static void main(String[] args) throws Exception {
