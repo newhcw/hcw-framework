@@ -36,6 +36,7 @@
         <module>hcw-mybatisplus</module>
         <module>hcw-learn-netty</module>
         <module>hcw-learn-flink</module>
+        <module>hcw-dubbo-springboot-demo</module>
     </modules>
 
 
