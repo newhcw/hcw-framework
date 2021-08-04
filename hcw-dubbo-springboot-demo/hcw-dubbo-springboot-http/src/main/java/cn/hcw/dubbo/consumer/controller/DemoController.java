@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 @Controller
 public class DemoController {
 
-    @DubboReference
+    @DubboReference(version = "1.0.0")
     private DemoService demoService;
 
 
