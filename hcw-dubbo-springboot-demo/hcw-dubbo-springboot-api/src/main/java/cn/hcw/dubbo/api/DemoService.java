@@ -1,5 +1,5 @@
 package cn.hcw.dubbo.api;
 
 public interface DemoService {
-    public String sayHi() throws InterruptedException;
+    public User sayHi() throws InterruptedException;
 }
