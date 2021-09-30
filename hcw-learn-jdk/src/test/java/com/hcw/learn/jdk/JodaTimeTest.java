@@ -102,4 +102,12 @@ public class JodaTimeTest {
         long epochMilli4 =  localDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();// 写法 3
         System.out.println(epochMilli4);
     }
+
+    @Test
+    public void testFormat() {
+        String date = "20210501";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(date, dateTimeFormatter);
+        System.out.println(localDate.toString());
+    }
 }
