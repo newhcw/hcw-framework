@@ -11,6 +11,5 @@ public class Test {
             List.of(args).stream().forEach(v-> System.out.println(v));
             break;
         }
-
     }
 }
