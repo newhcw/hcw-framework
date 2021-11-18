@@ -1,8 +1,10 @@
 package com.hcw.framework.learn.jdk8;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Spliterator;
+import java.util.stream.Collectors;
 
 /**
  * 踩坑指南
@@ -17,5 +19,9 @@ public class ArraysTest {
         System.out.println(spliterator.estimateSize());
         System.out.println(spliterator.getExactSizeIfKnown());
         System.out.println(spliterator.characteristics());
+
+
+        List a = new ArrayList();
+        a.stream().map(t->t=0).collect(Collectors.toList());
     }
 }
