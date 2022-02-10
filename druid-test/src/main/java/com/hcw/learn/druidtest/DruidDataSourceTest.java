@@ -11,6 +11,7 @@ public class DruidDataSourceTest {
 
     public static DataSource getDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
+        //dbhost=jdbc:mysql://172.18.23.100:3306/yourdatabase?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
         dataSource.setUrl("jdbc:mysql://node1:3306/test?useSSL=false&characterEncoding=utf8&serverTimezone=UTC&connectTimeout=1200&socketTimeout=3000");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
@@ -23,7 +24,7 @@ public class DruidDataSourceTest {
 
         DataSource dataSource = getDataSource();
         try(Connection connection = dataSource.getConnection()){
-            ResultSet resultSet = connection.createStatement().executeQuery("select 1");
+            ResultSet resultSet = connection.createStatement().executeQuery("select * from user ");
             while (resultSet.next()) {
                 System.out.println(resultSet.toString());
             }

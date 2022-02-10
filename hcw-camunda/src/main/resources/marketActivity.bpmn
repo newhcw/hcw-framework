@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_01smt1j" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="act_start" name="报名开始" isExecutable="true">
+    <bpmn:startEvent id="StartAct" name="接受报名请求">
+      <bpmn:outgoing>Flow_10pjvrs</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_10pjvrs" sourceRef="StartAct" targetRef="Activity_0zt9gnt" />
+    <bpmn:endEvent id="apply_end" name="结束">
+      <bpmn:incoming>Flow_0m36o64</bpmn:incoming>
+      <bpmn:terminateEventDefinition id="TerminateEventDefinition_0pic2e9" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_05p7k3l" sourceRef="Activity_0zt9gnt" targetRef="Activity_00jb18v" />
+    <bpmn:serviceTask id="Activity_0zt9gnt" name="校验是否报名过" camunda:delegateExpression="${userCheckApplyStatusService}">
+      <bpmn:incoming>Flow_10pjvrs</bpmn:incoming>
+      <bpmn:outgoing>Flow_05p7k3l</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0m36o64" sourceRef="Activity_00jb18v" targetRef="apply_end" />
+    <bpmn:serviceTask id="Activity_00jb18v" name="报名成功后，发放奖励" camunda:delegateExpression="${userApplySuccessService}">
+      <bpmn:incoming>Flow_05p7k3l</bpmn:incoming>
+      <bpmn:outgoing>Flow_0m36o64</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="act_start">
+      <bpmndi:BPMNEdge id="Flow_10pjvrs_di" bpmnElement="Flow_10pjvrs">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="370" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05p7k3l_di" bpmnElement="Flow_05p7k3l">
+        <di:waypoint x="470" y="120" />
+        <di:waypoint x="640" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0m36o64_di" bpmnElement="Flow_0m36o64">
+        <di:waypoint x="740" y="120" />
+        <di:waypoint x="952" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartAct">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="137" y="145" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1uniox8_di" bpmnElement="Activity_0zt9gnt">
+        <dc:Bounds x="370" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0u2vfaj_di" bpmnElement="apply_end">
+        <dc:Bounds x="952" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="959" y="145" width="22" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bea0yf_di" bpmnElement="Activity_00jb18v">
+        <dc:Bounds x="640" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
