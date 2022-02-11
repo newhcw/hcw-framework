@@ -37,6 +37,8 @@
         <module>hcw-learn-netty</module>
         <module>hcw-learn-flink</module>
         <module>hcw-dubbo-springboot-demo</module>
+        <module>hcw-learn-ali-oss</module>
+        <module>ExcelExportMongo</module>
     </modules>
 
 

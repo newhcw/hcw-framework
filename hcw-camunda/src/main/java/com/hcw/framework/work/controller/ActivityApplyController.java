@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController("/market/activity")
+@RestController
+@RequestMapping(value = "/market/activity")
 public class ActivityApplyController {
 
 

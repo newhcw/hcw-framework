@@ -13,7 +13,6 @@ public class UserApplySuccessService implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        System.out.println("报名成功，发放奖励开始");
         Object userId = delegateExecution.getVariable("userId");
         logger.info("userId:{}报名成功，发放奖励开始",userId);
     }
