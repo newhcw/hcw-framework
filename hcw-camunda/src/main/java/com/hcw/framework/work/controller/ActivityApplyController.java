@@ -18,9 +18,11 @@ public class ActivityApplyController {
     private RuntimeService runtimeService;
 
     @RequestMapping(value = "/apply")
-    public String apply(@RequestParam(value = "userId",required = false)String userId){
+    public String apply(@RequestParam(value = "userId")String userId,
+                        @RequestParam(value = "activityId")String activityId ){
         Map<String, Object> variables  = new HashMap<>();
         variables.put("userId", userId);
+        variables.put("activityId", activityId);
         runtimeService.startProcessInstanceByKey("act_start",variables);
         return "SUCCESS";
     }
