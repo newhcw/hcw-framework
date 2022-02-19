@@ -1,12 +1,15 @@
 package com.hcw.framework.work.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.hcw.framework.work.response.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.rest.dto.task.TaskDto;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
+import org.camunda.bpm.engine.runtime.ProcessInstanceWithVariables;
 import org.camunda.bpm.engine.task.Task;
+import org.camunda.bpm.engine.variable.VariableMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,13 +34,14 @@ public class ActivityApplyController {
     private TaskService taskService;
 
     @RequestMapping(value = "/apply")
-    public String apply(@RequestParam(value = "userId")String userId,
+    public ResponseVo apply(@RequestParam(value = "userId")String userId,
                         @RequestParam(value = "activityId")String activityId ){
         Map<String, Object> variables  = new HashMap<>();
         variables.put("userId", userId);
         variables.put("activityId", activityId);
-        runtimeService.startProcessInstanceByKey("act_apply_main_process", variables);
-        return "SUCCESS";
+        ProcessInstanceWithVariables processInstanceWithVariables = runtimeService.createProcessInstanceByKey("act_apply_main_process").setVariables(variables).executeWithVariablesInReturn();
+        VariableMap variablesMap = processInstanceWithVariables.getVariables();
+        return JSON.parseObject((String) variablesMap.getOrDefault("responseVo", JSON.toJSONString(ResponseVo.builder().build())),ResponseVo.class);
     }
 
     @RequestMapping(value = "/agree")
