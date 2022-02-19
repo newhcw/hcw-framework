@@ -2,9 +2,9 @@ package com.hcw.framework.work;
 
 
 
-import com.hcw.framework.work.delegate.UserApplySuccessService;
 import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.repository.ProcessDefinition;
+import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
 
-
+@EnableProcessApplication
 @SpringBootApplication
 public class ProcessApplication implements CommandLineRunner {
 

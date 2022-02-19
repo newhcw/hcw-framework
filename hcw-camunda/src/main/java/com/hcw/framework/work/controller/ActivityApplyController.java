@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.rest.dto.task.TaskDto;
+import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,7 @@ public class ActivityApplyController {
         Map<String, Object> variables  = new HashMap<>();
         variables.put("userId", userId);
         variables.put("activityId", activityId);
-        runtimeService.startProcessInstanceByKey("act_start",variables);
+        runtimeService.startProcessInstanceByKey("act_apply_main_process", variables);
         return "SUCCESS";
     }
 
