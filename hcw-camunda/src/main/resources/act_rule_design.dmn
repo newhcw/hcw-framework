@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="act_rule_decision" name="活动规则决策" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
+  <decision id="act_rule" name="act rule">
+    <decisionTable id="DecisionTable_003cjmf">
+      <input id="Input_1" biodi:width="192">
+        <inputExpression id="InputExpression_1" typeRef="integer">
+          <text>activityId</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="ruleId" typeRef="string" />
+      <rule id="DecisionRule_0pk8b90">
+        <description>全民实盘大赛</description>
+        <inputEntry id="UnaryTests_10vkeut">
+          <text>187</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1g1zxhf">
+          <text>"gj_sp"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1is9oxb">
+        <description>高校ETF实盘大赛</description>
+        <inputEntry id="UnaryTests_1geikg5">
+          <text>113</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ll7eb3">
+          <text>"etf_gx"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ia9q2o">
+        <description>银证ETF实盘大赛</description>
+        <inputEntry id="UnaryTests_06f63av">
+          <text>115</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1tisiqs">
+          <text>"etf_yz"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="act_rule">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

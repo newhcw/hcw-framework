@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1l71r18" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="sub_process_flag_game" name="flag活动规则引擎" isExecutable="true">
+    <bpmn:serviceTask id="Activity_00py3f8" name="每日一次立flag规则校验" camunda:delegateExpression="${userApplyNickNameCheckDelegate}">
+      <bpmn:incoming>Flow_0yys1ba</bpmn:incoming>
+      <bpmn:outgoing>Flow_0f3y2w3</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_0ttgc32" name="已经立flag？">
+      <bpmn:incoming>Flow_0f3y2w3</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ve1hxs</bpmn:outgoing>
+      <bpmn:outgoing>Flow_049vtqx</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_1rmwwng">
+      <bpmn:incoming>Flow_08ubc4e</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="Event_0byjr5k">
+      <bpmn:outgoing>Flow_0yys1ba</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_nickName_repeat_error" name="已经立过了">
+      <bpmn:incoming>Flow_0ve1hxs</bpmn:incoming>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_1v3lpu4" errorRef="Error_0eluq14" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0yys1ba" sourceRef="Event_0byjr5k" targetRef="Activity_00py3f8" />
+    <bpmn:sequenceFlow id="Flow_0f3y2w3" sourceRef="Activity_00py3f8" targetRef="Gateway_0ttgc32" />
+    <bpmn:sequenceFlow id="Flow_0ve1hxs" name="是" sourceRef="Gateway_0ttgc32" targetRef="Event_nickName_repeat_error">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${repeatFlag=='Y'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_049vtqx" name="否" sourceRef="Gateway_0ttgc32" targetRef="Activity_0ucxrcv">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${repeatFlag=='N'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_0ucxrcv" name="初始化每日立flag数量" camunda:delegateExpression="${userApplyNickNameCheckDelegate}">
+      <bpmn:incoming>Flow_049vtqx</bpmn:incoming>
+      <bpmn:outgoing>Flow_08ubc4e</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_08ubc4e" sourceRef="Activity_0ucxrcv" targetRef="Event_1rmwwng" />
+  </bpmn:process>
+  <bpmn:error id="Error_0eluq14" name="nickName_repeat_error" errorCode="10000" camunda:errorMessage="昵称重复" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="sub_process_flag_game">
+      <bpmndi:BPMNEdge id="Flow_0yys1ba_di" bpmnElement="Flow_0yys1ba">
+        <di:waypoint x="188" y="130" />
+        <di:waypoint x="270" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0f3y2w3_di" bpmnElement="Flow_0f3y2w3">
+        <di:waypoint x="370" y="130" />
+        <di:waypoint x="505" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ve1hxs_di" bpmnElement="Flow_0ve1hxs">
+        <di:waypoint x="530" y="155" />
+        <di:waypoint x="530" y="202" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="536" y="154" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_049vtqx_di" bpmnElement="Flow_049vtqx">
+        <di:waypoint x="555" y="130" />
+        <di:waypoint x="640" y="130" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="563" y="112" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08ubc4e_di" bpmnElement="Flow_08ubc4e">
+        <di:waypoint x="740" y="130" />
+        <di:waypoint x="802" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_00py3f8_di" bpmnElement="Activity_00py3f8">
+        <dc:Bounds x="270" y="90" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0ttgc32_di" bpmnElement="Gateway_0ttgc32" isMarkerVisible="true">
+        <dc:Bounds x="505" y="105" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="500" y="81" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0byjr5k_di" bpmnElement="Event_0byjr5k">
+        <dc:Bounds x="152" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_nickName_repeat_error_di" bpmnElement="Event_nickName_repeat_error">
+        <dc:Bounds x="512" y="202" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="503" y="245" width="55" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1rmwwng_di" bpmnElement="Event_1rmwwng">
+        <dc:Bounds x="802" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1eym801_di" bpmnElement="Activity_0ucxrcv">
+        <dc:Bounds x="640" y="90" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
