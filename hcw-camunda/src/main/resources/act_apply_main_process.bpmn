@@ -2,7 +2,7 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_12h4qyo" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:error id="Error_1wxzx9b" />
   <bpmn:error id="Error_1jx9b6j" />
-  <bpmn:error id="Error_0e2tu3b" name="Error_apply" errorCode="500" camunda:errorMessage="报名失败" />
+  <bpmn:error id="Error_0e2tu3b" name="Event_nickName_repeat_error" errorCode="10000" camunda:errorMessage="报名失败" />
   <bpmn:process id="act_apply_main_process" name="活动报名主流程" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0tjfggi</bpmn:outgoing>
@@ -34,7 +34,7 @@
       <bpmn:incoming>Flow_09m3gsn</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:endEvent id="Event_1mm4ddn" name="结束">
-      <bpmn:incoming>Flow_1snmgj9</bpmn:incoming>
+      <bpmn:incoming>Flow_06ni7o7</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:serviceTask id="Activity_0t5mke8" name="报名成功，活动数据入库" camunda:delegateExpression="${userApplySuccessDelegate}">
       <bpmn:incoming>Flow_1mcya25</bpmn:incoming>
@@ -48,7 +48,7 @@
     <bpmn:sequenceFlow id="Flow_1w1vu6d" name="是" sourceRef="Gateway_0evp4hv" targetRef="Activity_1el95i1">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkResult=='Y'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1snmgj9" sourceRef="Activity_0t5mke8" targetRef="Event_1mm4ddn" />
+    <bpmn:sequenceFlow id="Flow_1snmgj9" sourceRef="Activity_0t5mke8" targetRef="Activity_1hpoama" />
     <bpmn:sequenceFlow id="Flow_0nagsj0" sourceRef="Activity_0k6i3jw" targetRef="Gateway_0evp4hv" />
     <bpmn:sequenceFlow id="Flow_1nk25o3" name="否" sourceRef="Gateway_0lk6qy0" targetRef="Activity_0u3n6ff">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${ruleId!="gj_sp"}</bpmn:conditionExpression>
@@ -70,7 +70,7 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${ruleId=="gj_sp"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1mcya25" sourceRef="Activity_0qgldk4" targetRef="Activity_0t5mke8" />
-    <bpmn:callActivity id="Activity_0qgldk4" name="全民实盘大赛" calledElement="sub_process_gj_sp_game">
+    <bpmn:callActivity id="Activity_0qgldk4" name="全民实盘大赛规则" calledElement="sub_process_gj_sp_game">
       <bpmn:extensionElements>
         <camunda:in source="activityId" target="activityId" />
         <camunda:in source="userId" target="userId" />
@@ -78,7 +78,26 @@
       <bpmn:incoming>Flow_0112wiw</bpmn:incoming>
       <bpmn:outgoing>Flow_1mcya25</bpmn:outgoing>
     </bpmn:callActivity>
+    <bpmn:sendTask id="Activity_1hpoama" name="添加积分" camunda:delegateExpression="${userAddScoreDelegate}">
+      <bpmn:incoming>Flow_1snmgj9</bpmn:incoming>
+      <bpmn:outgoing>Flow_06ni7o7</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_06ni7o7" sourceRef="Activity_1hpoama" targetRef="Event_1mm4ddn" />
+    <bpmn:boundaryEvent id="Event_sub_error" attachedToRef="Activity_0qgldk4">
+      <bpmn:outgoing>Flow_1hnfk4i</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_08lsmkv" errorRef="Error_0e2tu3b" camunda:errorCodeVariable="errorCode" camunda:errorMessageVariable="message" />
+    </bpmn:boundaryEvent>
+    <bpmn:endEvent id="Event_1kaeyf4">
+      <bpmn:incoming>Flow_1cx2h5j</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1hnfk4i" sourceRef="Event_sub_error" targetRef="Activity_0szh7pc" />
+    <bpmn:serviceTask id="Activity_0szh7pc" name="失败后处理" camunda:delegateExpression="${userApplyFailDelegate}">
+      <bpmn:incoming>Flow_1hnfk4i</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cx2h5j</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1cx2h5j" sourceRef="Activity_0szh7pc" targetRef="Event_1kaeyf4" />
   </bpmn:process>
+  <bpmn:error id="Error_015jds3" name="Error_1cim9r9" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="act_apply_main_process">
       <bpmndi:BPMNEdge id="Flow_0tjfggi_di" bpmnElement="Flow_0tjfggi">
@@ -94,7 +113,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1snmgj9_di" bpmnElement="Flow_1snmgj9">
         <di:waypoint x="1530" y="137" />
-        <di:waypoint x="1682" y="137" />
+        <di:waypoint x="1600" y="137" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0nagsj0_di" bpmnElement="Flow_0nagsj0">
         <di:waypoint x="450" y="137" />
@@ -128,14 +147,27 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0112wiw_di" bpmnElement="Flow_0112wiw">
         <di:waypoint x="1005" y="137" />
-        <di:waypoint x="1170" y="137" />
+        <di:waypoint x="1200" y="137" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1067" y="119" width="44" height="14" />
+          <dc:Bounds x="1082" y="119" width="44" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1mcya25_di" bpmnElement="Flow_1mcya25">
-        <di:waypoint x="1270" y="137" />
+        <di:waypoint x="1300" y="137" />
         <di:waypoint x="1430" y="137" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06ni7o7_di" bpmnElement="Flow_06ni7o7">
+        <di:waypoint x="1700" y="137" />
+        <di:waypoint x="1752" y="137" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hnfk4i_di" bpmnElement="Flow_1hnfk4i">
+        <di:waypoint x="1300" y="195" />
+        <di:waypoint x="1300" y="320" />
+        <di:waypoint x="1370" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cx2h5j_di" bpmnElement="Flow_1cx2h5j">
+        <di:waypoint x="1470" y="320" />
+        <di:waypoint x="1552" y="320" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Gateway_0evp4hv_di" bpmnElement="Gateway_0evp4hv" isMarkerVisible="true">
         <dc:Bounds x="585" y="112" width="50" height="50" />
@@ -170,17 +202,29 @@
       <bpmndi:BPMNShape id="Event_0wjmjtr_di" bpmnElement="Event_0wjmjtr">
         <dc:Bounds x="1132" y="272" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0kffgu7_di" bpmnElement="Activity_0qgldk4">
-        <dc:Bounds x="1170" y="97" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1nf75yc_di" bpmnElement="Activity_0t5mke8">
         <dc:Bounds x="1430" y="97" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1mm4ddn_di" bpmnElement="Event_1mm4ddn">
-        <dc:Bounds x="1682" y="119" width="36" height="36" />
+        <dc:Bounds x="1752" y="119" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1689" y="162" width="22" height="14" />
+          <dc:Bounds x="1759" y="162" width="22" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hpoama_di" bpmnElement="Activity_1hpoama">
+        <dc:Bounds x="1600" y="97" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0szh7pc_di" bpmnElement="Activity_0szh7pc">
+        <dc:Bounds x="1370" y="280" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1kaeyf4_di" bpmnElement="Event_1kaeyf4">
+        <dc:Bounds x="1552" y="302" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0kffgu7_di" bpmnElement="Activity_0qgldk4">
+        <dc:Bounds x="1200" y="97" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1cmjh1g_di" bpmnElement="Event_sub_error">
+        <dc:Bounds x="1282" y="159" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
