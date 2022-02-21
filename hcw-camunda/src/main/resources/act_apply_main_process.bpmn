@@ -8,11 +8,11 @@
       <bpmn:incoming>Flow_1vknhbf</bpmn:incoming>
       <bpmn:outgoing>Flow_03kmqku</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:sequenceFlow id="Flow_1vknhbf" sourceRef="Activity_0db1n6o" targetRef="Activity_1kzz0an" />
+    <bpmn:sequenceFlow id="Flow_1vknhbf" sourceRef="Activity_rule_checker" targetRef="Activity_1kzz0an" />
     <bpmn:endEvent id="Event_1ozke9y" name="结束">
       <bpmn:incoming>Flow_0bknua0</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:boundaryEvent id="Event_0jfjf7e" attachedToRef="Activity_0db1n6o">
+    <bpmn:boundaryEvent id="Event_0jfjf7e" attachedToRef="Activity_rule_checker">
       <bpmn:outgoing>Flow_1kmgkhb</bpmn:outgoing>
       <bpmn:errorEventDefinition id="ErrorEventDefinition_1jvqvbr" errorRef="Error_1lydf2f" />
     </bpmn:boundaryEvent>
@@ -20,10 +20,10 @@
     <bpmn:endEvent id="Event_0kvrk0q">
       <bpmn:incoming>Flow_1erbq12</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_18bs3eg" sourceRef="Activity_06pa85n" targetRef="Activity_0db1n6o" />
+    <bpmn:sequenceFlow id="Flow_18bs3eg" sourceRef="Activity_06pa85n" targetRef="Activity_rule_checker" />
     <bpmn:sequenceFlow id="Flow_1erbq12" sourceRef="Activity_06mg4or" targetRef="Event_0kvrk0q" />
     <bpmn:sequenceFlow id="Flow_0e3gn70" sourceRef="StartEvent_1" targetRef="Activity_06pa85n" />
-    <bpmn:callActivity id="Activity_0db1n6o" name="规则检验" calledElement="sub_process_ruler_checker">
+    <bpmn:callActivity id="Activity_rule_checker" name="规则检验" calledElement="sub_process_ruler_checker">
       <bpmn:extensionElements>
         <camunda:in source="userId" target="userId" />
         <camunda:out source="userId" target="userId" />
@@ -116,7 +116,7 @@
       <bpmndi:BPMNShape id="Event_0kvrk0q_di" bpmnElement="Event_0kvrk0q">
         <dc:Bounds x="472" y="362" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1opvim6_di" bpmnElement="Activity_0db1n6o">
+      <bpmndi:BPMNShape id="Activity_1opvim6_di" bpmnElement="Activity_rule_checker">
         <dc:Bounds x="490" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0xh3te3_di" bpmnElement="Activity_0xh3te3">
