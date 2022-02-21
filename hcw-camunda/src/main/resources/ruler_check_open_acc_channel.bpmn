@@ -5,7 +5,7 @@
       <bpmn:incoming>Flow_0yys1ba</bpmn:incoming>
       <bpmn:outgoing>Flow_0f3y2w3</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:exclusiveGateway id="Gateway_0ttgc32">
+    <bpmn:exclusiveGateway id="Gateway_0ttgc32" name="是否符合">
       <bpmn:incoming>Flow_0f3y2w3</bpmn:incoming>
       <bpmn:outgoing>Flow_0ve1hxs</bpmn:outgoing>
       <bpmn:outgoing>Flow_049vtqx</bpmn:outgoing>
@@ -61,7 +61,7 @@
       <bpmndi:BPMNShape id="Gateway_0ttgc32_di" bpmnElement="Gateway_0ttgc32" isMarkerVisible="true">
         <dc:Bounds x="505" y="105" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="492" y="81" width="77" height="27" />
+          <dc:Bounds x="508" y="75" width="44" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1rmwwng_di" bpmnElement="Event_1rmwwng">
