@@ -35,6 +35,14 @@
           <text>"etf_yz"</text>
         </outputEntry>
       </rule>
+      <rule id="DecisionRule_1kzsif8">
+        <inputEntry id="UnaryTests_0bcdlvb">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08mxj5t">
+          <text></text>
+        </outputEntry>
+      </rule>
     </decisionTable>
   </decision>
   <dmndi:DMNDI>
