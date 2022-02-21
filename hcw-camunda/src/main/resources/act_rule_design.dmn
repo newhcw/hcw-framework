@@ -7,7 +7,7 @@
           <text>activityId</text>
         </inputExpression>
       </input>
-      <output id="Output_1" name="ruleId" typeRef="string" biodi:width="192" />
+      <output id="Output_1" name="processKey" typeRef="string" biodi:width="192" />
       <rule id="DecisionRule_0pk8b90">
         <description>全民实盘大赛</description>
         <inputEntry id="UnaryTests_10vkeut">

@@ -3,7 +3,7 @@
   <bpmn:error id="Error_1wxzx9b" />
   <bpmn:error id="Error_1jx9b6j" />
   <bpmn:error id="Error_0e2tu3b" name="Event_nickName_repeat_error" errorCode="10000" camunda:errorMessage="报名失败" />
-  <bpmn:process id="sub_process_ruler_checker" name="规则判断" isExecutable="true">
+  <bpmn:process id="sub_process_ruler_checker" name="规则路由器" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0tjfggi</bpmn:outgoing>
     </bpmn:startEvent>
@@ -21,7 +21,7 @@
       <bpmn:outgoing>Flow_1w1vu6d</bpmn:outgoing>
       <bpmn:outgoing>Flow_0dtw13x</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:businessRuleTask id="Activity_1el95i1" name="规则决策" camunda:resultVariable="ruleId" camunda:decisionRef="act_rule" camunda:mapDecisionResult="singleEntry">
+    <bpmn:businessRuleTask id="Activity_1el95i1" name="规则决策" camunda:resultVariable="processKey" camunda:decisionRef="act_rule" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>Flow_1w1vu6d</bpmn:incoming>
       <bpmn:outgoing>Flow_0pmsyzh</bpmn:outgoing>
     </bpmn:businessRuleTask>

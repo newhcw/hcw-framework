@@ -2,6 +2,7 @@ package com.hcw.framework.work;
 
 
 
+import com.hcw.framework.work.service.BpmnManagerService;
 import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.repository.ProcessDefinition;
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
@@ -21,7 +22,8 @@ public class ProcessApplication implements CommandLineRunner {
     Logger logger = LoggerFactory.getLogger(ProcessApplication.class);
 
     @Autowired
-    RepositoryService repositoryService;
+    private BpmnManagerService bpmnManagerService;
+
 
 
 
@@ -31,12 +33,7 @@ public class ProcessApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        List<ProcessDefinition> processDefinitionList = repositoryService.createProcessDefinitionQuery().active().latestVersion().list();
-        logger.info("> 处于激活状态的最新版本的流程定义数量: " + processDefinitionList.size());
-        for (ProcessDefinition pd : processDefinitionList) {
-            logger.info("\t ===> Process definition: " + pd.getKey() + " 版本：" + pd.getVersion());
-
-        }
+        bpmnManagerService.fillProcessDefinitionMap();
     }
 
 
