@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0eu16ah" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="sub_process_gj_sp_game" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_10vkve0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_06huu2u" name="判断活动规则">
+      <bpmn:incoming>Flow_10vkve0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dkuzqf</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_10vkve0" sourceRef="StartEvent_1" targetRef="Activity_06huu2u" />
+    <bpmn:sequenceFlow id="Flow_0dkuzqf" sourceRef="Activity_06huu2u" targetRef="Gateway_0csn4gv" />
+    <bpmn:parallelGateway id="Gateway_0csn4gv">
+      <bpmn:incoming>Flow_0dkuzqf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1f6nfq3</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0pqxik0</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1g5s3pg</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_1f6nfq3" sourceRef="Gateway_0csn4gv" targetRef="Activity_1teoysd" />
+    <bpmn:callActivity id="Activity_1teoysd" name="判断是否参加其他etf大赛" calledElement="ruler_check_joined_etf">
+      <bpmn:incoming>Flow_1f6nfq3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1e26y5m</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0pqxik0" sourceRef="Gateway_0csn4gv" targetRef="Activity_1hxx4hh" />
+    <bpmn:callActivity id="Activity_1hxx4hh" name="判断开户渠道" calledElement="ruler_check_open_acc_channel">
+      <bpmn:incoming>Flow_0pqxik0</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tlg1fe</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1g5s3pg" sourceRef="Gateway_0csn4gv" targetRef="Activity_1yilew0" />
+    <bpmn:callActivity id="Activity_1yilew0" name="判断昵称是否重复" calledElement="ruler_check_repeat_nick_name">
+      <bpmn:incoming>Flow_1g5s3pg</bpmn:incoming>
+      <bpmn:outgoing>Flow_18prz80</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1e26y5m" sourceRef="Activity_1teoysd" targetRef="Gateway_1batdbx" />
+    <bpmn:parallelGateway id="Gateway_1batdbx">
+      <bpmn:incoming>Flow_1e26y5m</bpmn:incoming>
+      <bpmn:incoming>Flow_1tlg1fe</bpmn:incoming>
+      <bpmn:incoming>Flow_18prz80</bpmn:incoming>
+      <bpmn:outgoing>Flow_05nuaqz</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_1tlg1fe" sourceRef="Activity_1hxx4hh" targetRef="Gateway_1batdbx" />
+    <bpmn:sequenceFlow id="Flow_18prz80" sourceRef="Activity_1yilew0" targetRef="Gateway_1batdbx" />
+    <bpmn:endEvent id="Event_0uu2pn2">
+      <bpmn:incoming>Flow_05nuaqz</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_05nuaqz" sourceRef="Gateway_1batdbx" targetRef="Event_0uu2pn2" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="sub_process_gj_sp_game">
+      <bpmndi:BPMNEdge id="Flow_10vkve0_di" bpmnElement="Flow_10vkve0">
+        <di:waypoint x="215" y="297" />
+        <di:waypoint x="270" y="297" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dkuzqf_di" bpmnElement="Flow_0dkuzqf">
+        <di:waypoint x="370" y="297" />
+        <di:waypoint x="425" y="297" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1f6nfq3_di" bpmnElement="Flow_1f6nfq3">
+        <di:waypoint x="450" y="272" />
+        <di:waypoint x="450" y="120" />
+        <di:waypoint x="570" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pqxik0_di" bpmnElement="Flow_0pqxik0">
+        <di:waypoint x="475" y="297" />
+        <di:waypoint x="570" y="297" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1g5s3pg_di" bpmnElement="Flow_1g5s3pg">
+        <di:waypoint x="450" y="322" />
+        <di:waypoint x="450" y="460" />
+        <di:waypoint x="570" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e26y5m_di" bpmnElement="Flow_1e26y5m">
+        <di:waypoint x="670" y="120" />
+        <di:waypoint x="850" y="120" />
+        <di:waypoint x="850" y="272" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tlg1fe_di" bpmnElement="Flow_1tlg1fe">
+        <di:waypoint x="670" y="297" />
+        <di:waypoint x="825" y="297" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18prz80_di" bpmnElement="Flow_18prz80">
+        <di:waypoint x="670" y="460" />
+        <di:waypoint x="850" y="460" />
+        <di:waypoint x="850" y="322" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05nuaqz_di" bpmnElement="Flow_05nuaqz">
+        <di:waypoint x="875" y="297" />
+        <di:waypoint x="1032" y="297" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="279" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06huu2u_di" bpmnElement="Activity_06huu2u">
+        <dc:Bounds x="270" y="257" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1epih12_di" bpmnElement="Gateway_0csn4gv">
+        <dc:Bounds x="425" y="272" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xl23ne_di" bpmnElement="Activity_1hxx4hh">
+        <dc:Bounds x="570" y="257" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18ip81i_di" bpmnElement="Activity_1yilew0">
+        <dc:Bounds x="570" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0c2xhsp_di" bpmnElement="Activity_1teoysd">
+        <dc:Bounds x="570" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_03q9ff6_di" bpmnElement="Gateway_1batdbx">
+        <dc:Bounds x="825" y="272" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0uu2pn2_di" bpmnElement="Event_0uu2pn2">
+        <dc:Bounds x="1032" y="279" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

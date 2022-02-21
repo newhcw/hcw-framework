@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_10o5pzv" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
-  <bpmn:process id="ruler_check_joined_other_etf" name="规则引擎：判断是否报名其他etf赛区" isExecutable="true">
+  <bpmn:process id="ruler_check_joined_etf" name="规则引擎：判断是否报名其他etf赛区" isExecutable="true">
     <bpmn:serviceTask id="Activity_00py3f8" name="校验是否已报名其他ETF赛区" camunda:delegateExpression="${userApplyNickNameCheckDelegate}">
       <bpmn:incoming>Flow_0yys1ba</bpmn:incoming>
       <bpmn:outgoing>Flow_0f3y2w3</bpmn:outgoing>
@@ -31,7 +31,7 @@
   </bpmn:process>
   <bpmn:error id="Error_1w3ro9j" name="nickName_repeat_error" errorCode="10000" camunda:errorMessage="昵称重复" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ruler_check_joined_other_etf">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ruler_check_joined_etf">
       <bpmndi:BPMNEdge id="Flow_049vtqx_di" bpmnElement="Flow_049vtqx">
         <di:waypoint x="555" y="130" />
         <di:waypoint x="732" y="130" />
