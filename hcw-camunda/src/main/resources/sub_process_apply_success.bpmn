@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_04s40fa" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="sub_process_apply_success" name="报名成功后子流程" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1udwlx5</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_0u5ur9c" name="报名成功后操作">
+      <bpmn:incoming>Flow_1udwlx5</bpmn:incoming>
+      <bpmn:outgoing>Flow_0oi94xu</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1udwlx5" sourceRef="StartEvent_1" targetRef="Activity_0u5ur9c" />
+    <bpmn:businessRuleTask id="Activity_1el95i1" name="行为决策器" camunda:resultVariable="afterApplyProcessKey" camunda:decisionRef="act_apply_success_rule" camunda:mapDecisionResult="singleEntry">
+      <bpmn:incoming>Flow_0oi94xu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0znfr7m</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:sequenceFlow id="Flow_0oi94xu" sourceRef="Activity_0u5ur9c" targetRef="Activity_1el95i1" />
+    <bpmn:sequenceFlow id="Flow_0znfr7m" sourceRef="Activity_1el95i1" targetRef="Activity_1ehd4ov" />
+    <bpmn:serviceTask id="Activity_1ehd4ov" name="行为路由器" camunda:delegateExpression="${activityApplySuccessRouterDelegate}">
+      <bpmn:incoming>Flow_0znfr7m</bpmn:incoming>
+      <bpmn:outgoing>Flow_122md4t</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_12s08u2">
+      <bpmn:incoming>Flow_122md4t</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_122md4t" sourceRef="Activity_1ehd4ov" targetRef="Event_12s08u2" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="sub_process_apply_success">
+      <bpmndi:BPMNEdge id="Flow_122md4t_di" bpmnElement="Flow_122md4t">
+        <di:waypoint x="800" y="117" />
+        <di:waypoint x="902" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0znfr7m_di" bpmnElement="Flow_0znfr7m">
+        <di:waypoint x="600" y="117" />
+        <di:waypoint x="700" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oi94xu_di" bpmnElement="Flow_0oi94xu">
+        <di:waypoint x="400" y="117" />
+        <di:waypoint x="500" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1udwlx5_di" bpmnElement="Flow_1udwlx5">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="300" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0u5ur9c_di" bpmnElement="Activity_0u5ur9c">
+        <dc:Bounds x="300" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1el95i1_di" bpmnElement="Activity_1el95i1">
+        <dc:Bounds x="500" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1cb8rpz_di" bpmnElement="Activity_1ehd4ov">
+        <dc:Bounds x="700" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_12s08u2_di" bpmnElement="Event_12s08u2">
+        <dc:Bounds x="902" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

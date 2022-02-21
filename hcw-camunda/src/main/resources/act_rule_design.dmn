@@ -18,21 +18,21 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1is9oxb">
-        <description>高校ETF实盘大赛</description>
+        <description>ETF实盘大赛</description>
         <inputEntry id="UnaryTests_1geikg5">
           <text>113</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1ll7eb3">
-          <text>"etf_gx"</text>
+          <text>"sub_process_etf_sp_game"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0ia9q2o">
-        <description>银证ETF实盘大赛</description>
+        <description>flag新年活动</description>
         <inputEntry id="UnaryTests_06f63av">
           <text>115</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1tisiqs">
-          <text>"etf_yz"</text>
+          <text>"sub_process_flag_game"</text>
         </outputEntry>
       </rule>
     </decisionTable>
