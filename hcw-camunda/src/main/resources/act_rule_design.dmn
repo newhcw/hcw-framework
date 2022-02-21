@@ -14,7 +14,7 @@
           <text>187</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1g1zxhf">
-          <text>"gj_sp"</text>
+          <text>"sub_process_gj_sp_game"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1is9oxb">
@@ -33,14 +33,6 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_1tisiqs">
           <text>"etf_yz"</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_1kzsif8">
-        <inputEntry id="UnaryTests_0bcdlvb">
-          <text></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_08mxj5t">
-          <text></text>
         </outputEntry>
       </rule>
     </decisionTable>
