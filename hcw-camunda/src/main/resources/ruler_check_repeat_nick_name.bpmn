@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_01zl2y3" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
-  <bpmn:process id="sub_process_gj_sp_game" name="全民实盘大赛规则引擎" isExecutable="true">
+  <bpmn:process id="ruler_check_repeat_nick_name" name="规则引擎：判断报名昵称是否重复" isExecutable="true">
     <bpmn:startEvent id="Event_0byjr5k">
       <bpmn:outgoing>Flow_0yys1ba</bpmn:outgoing>
     </bpmn:startEvent>
@@ -31,14 +31,13 @@
   </bpmn:process>
   <bpmn:error id="Error_06msyf6" name="nickName_repeat_error" errorCode="10000" camunda:errorMessage="昵称重复" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="sub_process_gj_sp_game">
-      <bpmndi:BPMNEdge id="Flow_0yys1ba_di" bpmnElement="Flow_0yys1ba">
-        <di:waypoint x="188" y="130" />
-        <di:waypoint x="270" y="130" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0f3y2w3_di" bpmnElement="Flow_0f3y2w3">
-        <di:waypoint x="370" y="130" />
-        <di:waypoint x="505" y="130" />
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ruler_check_repeat_nick_name">
+      <bpmndi:BPMNEdge id="Flow_049vtqx_di" bpmnElement="Flow_049vtqx">
+        <di:waypoint x="555" y="130" />
+        <di:waypoint x="732" y="130" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="596" y="112" width="11" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ve1hxs_di" bpmnElement="Flow_0ve1hxs">
         <di:waypoint x="530" y="155" />
@@ -48,12 +47,13 @@
           <dc:Bounds x="540" y="185" width="11" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_049vtqx_di" bpmnElement="Flow_049vtqx">
-        <di:waypoint x="555" y="130" />
-        <di:waypoint x="732" y="130" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="596" y="112" width="11" height="14" />
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNEdge id="Flow_0f3y2w3_di" bpmnElement="Flow_0f3y2w3">
+        <di:waypoint x="370" y="130" />
+        <di:waypoint x="505" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yys1ba_di" bpmnElement="Flow_0yys1ba">
+        <di:waypoint x="188" y="130" />
+        <di:waypoint x="270" y="130" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_0byjr5k_di" bpmnElement="Event_0byjr5k">
         <dc:Bounds x="152" y="112" width="36" height="36" />
