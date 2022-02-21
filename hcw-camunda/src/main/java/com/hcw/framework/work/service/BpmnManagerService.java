@@ -25,8 +25,8 @@ public class BpmnManagerService {
 
     private Map<String, ProcessDefinition> processDefinitionMap = new HashMap<>();
 
-    public  ProcessInstance startProcess(String key) {
-        return runtimeService.startProcessInstanceByKey(key);
+    public  ProcessInstance startProcess(String key,Map<String, Object> variables ) {
+        return runtimeService.startProcessInstanceByKey(key,variables);
     }
 
 

@@ -20,7 +20,7 @@ public class RulerRouterDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         String processKey = (String) delegateExecution.getVariable("processKey");
         if (bpmnManagerService.isExistProcessDefinitionByKey(processKey)){
-            ProcessInstance processInstance = bpmnManagerService.startProcess(processKey);
+            ProcessInstance processInstance = bpmnManagerService.startProcess(processKey,delegateExecution.getVariables());
         }else {
             throw new Exception("未定义流程");
         }
