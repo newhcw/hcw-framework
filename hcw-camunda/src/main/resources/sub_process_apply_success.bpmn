@@ -23,7 +23,17 @@
       <bpmn:incoming>Flow_122md4t</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_122md4t" sourceRef="Activity_1ehd4ov" targetRef="Event_12s08u2" />
+    <bpmn:boundaryEvent id="Event_1g42oug" attachedToRef="Activity_1ehd4ov">
+      <bpmn:outgoing>Flow_163g0f9</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0x28hi1" />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_163g0f9" sourceRef="Event_1g42oug" targetRef="Event_0uubwhn" />
+    <bpmn:endEvent id="Event_0uubwhn">
+      <bpmn:incoming>Flow_163g0f9</bpmn:incoming>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_16ayt4d" errorRef="Error_18fntt7" />
+    </bpmn:endEvent>
   </bpmn:process>
+  <bpmn:error id="Error_18fntt7" name="Error_1anci3k" errorCode="500" camunda:errorMessage="报名成功后流程选择失败" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="sub_process_apply_success">
       <bpmndi:BPMNEdge id="Flow_122md4t_di" bpmnElement="Flow_122md4t">
@@ -42,6 +52,11 @@
         <di:waypoint x="215" y="117" />
         <di:waypoint x="300" y="117" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_163g0f9_di" bpmnElement="Flow_163g0f9">
+        <di:waypoint x="770" y="175" />
+        <di:waypoint x="770" y="240" />
+        <di:waypoint x="842" y="240" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="179" y="99" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -56,6 +71,12 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_12s08u2_di" bpmnElement="Event_12s08u2">
         <dc:Bounds x="902" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_18wmajw_di" bpmnElement="Event_0uubwhn">
+        <dc:Bounds x="842" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0usd1wl_di" bpmnElement="Event_1g42oug">
+        <dc:Bounds x="752" y="139" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

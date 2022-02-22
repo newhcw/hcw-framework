@@ -33,12 +33,12 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkResult=='Y'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0nagsj0" sourceRef="Activity_0k6i3jw" targetRef="Gateway_0evp4hv" />
-    <bpmn:sequenceFlow id="Flow_0pmsyzh" sourceRef="Activity_1el95i1" targetRef="Activity_1tzhxq0" />
+    <bpmn:sequenceFlow id="Flow_0pmsyzh" sourceRef="Activity_1el95i1" targetRef="ruler_router" />
     <bpmn:sequenceFlow id="Flow_0dtw13x" name="否" sourceRef="Gateway_0evp4hv" targetRef="Event_1vtahgy">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkResult=='N'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1n8rdxe" sourceRef="Activity_1tzhxq0" targetRef="Event_0wjmjtr" />
-    <bpmn:serviceTask id="Activity_1tzhxq0" name="规则路由器" camunda:delegateExpression="${rulerRouterDelegate}">
+    <bpmn:sequenceFlow id="Flow_1n8rdxe" sourceRef="ruler_router" targetRef="Event_0wjmjtr" />
+    <bpmn:serviceTask id="ruler_router" name="规则路由器" camunda:delegateExpression="${rulerRouterDelegate}">
       <bpmn:incoming>Flow_0pmsyzh</bpmn:incoming>
       <bpmn:outgoing>Flow_1n8rdxe</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -46,10 +46,23 @@
       <bpmn:incoming>Flow_0dtw13x</bpmn:incoming>
       <bpmn:errorEventDefinition id="ErrorEventDefinition_18tir4g" errorRef="Error_015jds3" />
     </bpmn:endEvent>
+    <bpmn:boundaryEvent id="Event_1n7vnrv" attachedToRef="ruler_router">
+      <bpmn:outgoing>Flow_0dy974o</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0mcrv3z" />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_0dy974o" sourceRef="Event_1n7vnrv" targetRef="Event_1xsnnby" />
+    <bpmn:endEvent id="Event_1xsnnby">
+      <bpmn:incoming>Flow_0dy974o</bpmn:incoming>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_15512lc" errorRef="Error_015jds3" />
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmn:error id="Error_015jds3" name="Error_1cim9r9" errorCode="500" camunda:errorMessage="通用报名规则校验失败" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="sub_process_ruler_checker">
+      <bpmndi:BPMNEdge id="Flow_1n8rdxe_di" bpmnElement="Flow_1n8rdxe">
+        <di:waypoint x="930" y="137" />
+        <di:waypoint x="1062" y="137" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0dtw13x_di" bpmnElement="Flow_0dtw13x">
         <di:waypoint x="520" y="162" />
         <di:waypoint x="520" y="202" />
@@ -76,9 +89,10 @@
         <di:waypoint x="188" y="137" />
         <di:waypoint x="310" y="137" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1n8rdxe_di" bpmnElement="Flow_1n8rdxe">
-        <di:waypoint x="930" y="137" />
-        <di:waypoint x="1062" y="137" />
+      <bpmndi:BPMNEdge id="Flow_0dy974o_di" bpmnElement="Flow_0dy974o">
+        <di:waypoint x="930" y="195" />
+        <di:waypoint x="930" y="260" />
+        <di:waypoint x="1002" y="260" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="152" y="119" width="36" height="36" />
@@ -95,14 +109,20 @@
       <bpmndi:BPMNShape id="Activity_0cjsog8_di" bpmnElement="Activity_1el95i1">
         <dc:Bounds x="670" y="97" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1eh2bie_di" bpmnElement="Activity_1tzhxq0">
-        <dc:Bounds x="830" y="97" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0wjmjtr_di" bpmnElement="Event_0wjmjtr">
         <dc:Bounds x="1062" y="119" width="36" height="36" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1eh2bie_di" bpmnElement="ruler_router">
+        <dc:Bounds x="830" y="97" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0x8jrb0_di" bpmnElement="Event_1vtahgy">
         <dc:Bounds x="502" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0dgrs7p_di" bpmnElement="Event_1xsnnby">
+        <dc:Bounds x="1002" y="242" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0z8bug9_di" bpmnElement="Event_1n7vnrv">
+        <dc:Bounds x="912" y="159" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

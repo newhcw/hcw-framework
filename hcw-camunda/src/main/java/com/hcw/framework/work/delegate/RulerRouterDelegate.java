@@ -2,6 +2,7 @@ package com.hcw.framework.work.delegate;
 
 import com.hcw.framework.work.service.BpmnManagerService;
 import lombok.extern.slf4j.Slf4j;
+import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
@@ -22,7 +23,7 @@ public class RulerRouterDelegate implements JavaDelegate {
         if (bpmnManagerService.isExistProcessDefinitionByKey(processKey)){
             ProcessInstance processInstance = bpmnManagerService.startProcess(processKey,delegateExecution.getVariables());
         }else {
-            throw new Exception("未定义流程");
+            throw new BpmnError("未定义流程");
         }
 
     }
