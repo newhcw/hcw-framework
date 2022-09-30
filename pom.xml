@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>13</maven.compiler.source>
-        <maven.compiler.target>13</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
 
@@ -39,6 +39,9 @@
         <module>hcw-dubbo-springboot-demo</module>
         <module>hcw-learn-ali-oss</module>
         <module>ExcelExportMongo</module>
+        <module>test-data</module>
+        <module>hcw-learn-alioss</module>
+        <module>hcw-learn-alarm</module>
     </modules>
 
 

@@ -5,8 +5,6 @@ public class OssController {
 
 
 
-    public String getSign() {
 
-    }
 
 }
